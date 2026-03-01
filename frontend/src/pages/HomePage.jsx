@@ -25,59 +25,55 @@ const services = [
   {
     icon: Target,
     title: "Brand Strategy",
-    description: "Strategic positioning that differentiates your science in competitive markets.",
+    description: "Strategic positioning that differentiates your science in competitive therapeutic markets.",
     color: "bg-primary/10 text-primary"
   },
   {
     icon: PenTool,
     title: "Digital Marketing",
-    description: "Data-driven campaigns that engage HCPs, patients, and stakeholders.",
+    description: "Data-driven omnichannel campaigns that engage HCPs, patients, and investors.",
     color: "bg-tech-cyan/10 text-tech-cyan"
   },
   {
     icon: Microscope,
     title: "Scientific Communications",
-    description: "Expert medical writing and content that translates complex science.",
+    description: "Medical writing and content that translates complex data for any audience.",
     color: "bg-bio-green/10 text-bio-green"
   },
   {
     icon: ShieldCheck,
-    title: "Regulatory Support",
-    description: "Compliant marketing strategies that navigate complex guidelines.",
+    title: "Regulatory Marketing",
+    description: "Compliant strategies that navigate FDA, EMA, and global requirements.",
     color: "bg-primary/10 text-primary"
   }
 ];
 
 const stats = [
   { value: "150+", label: "Life Sciences Clients", icon: Users },
-  { value: "98%", label: "Client Retention", icon: TrendingUp },
-  { value: "25+", label: "Industry Awards", icon: Award },
-  { value: "12", label: "Global Markets", icon: Globe }
+  { value: "98%", label: "Client Retention Rate", icon: TrendingUp },
+  { value: "25", label: "Industry Awards", icon: Award },
+  { value: "12", label: "Global Markets Served", icon: Globe }
 ];
 
 const testimonials = [
   {
-    quote: "BioLumina transformed our product launch strategy. Their deep understanding of the pharma landscape resulted in a campaign that exceeded all our KPIs.",
-    author: "Dr. Rebecca Martinez",
-    role: "CMO, NovaTera Pharmaceuticals",
+    quote: "BioLumina's deep understanding of oncology marketing transformed our CAR-T launch. They delivered a campaign that exceeded every KPI we set, and their regulatory expertise saved us months of review cycles.",
+    author: "Dr. Katherine Moore",
+    role: "Chief Commercial Officer, Meridian Therapeutics",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100"
   },
   {
-    quote: "Working with BioLumina on our IPO communications was invaluable. They articulated our science in a way that resonated with investors and analysts alike.",
-    author: "Michael Chen",
-    role: "CEO, Genova Biosciences",
+    quote: "Their IPO communications work was exceptional. They articulated our gene therapy platform in a way that resonated with both scientific and financial audiences. We closed 25% above our target range.",
+    author: "Robert Chen",
+    role: "CEO, Helix Genomics",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
   },
   {
-    quote: "The team's scientific expertise combined with creative excellence is unmatched. They truly understand the unique challenges of biotech marketing.",
-    author: "Dr. Sarah Johnson",
-    role: "VP Marketing, PrecisionMed Devices",
+    quote: "We've worked with many agencies, but BioLumina truly understands the medical device space. Their thought leadership program established us as the innovation leader in surgical robotics.",
+    author: "Dr. Jennifer Walsh",
+    role: "VP Marketing, Apex Surgical Systems",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100"
   }
-];
-
-const clientLogos = [
-  "NovaTera", "Genova Bio", "PrecisionMed", "BioSync", "MediCore", "QuantumRx"
 ];
 
 const fadeUpVariant = {
@@ -123,7 +119,7 @@ export default function HomePage() {
               <motion.div variants={fadeUpVariant} className="mb-4">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  Life Sciences Marketing Experts
+                  Life Sciences Marketing Agency
                 </span>
               </motion.div>
               <motion.h1 
@@ -137,7 +133,7 @@ export default function HomePage() {
                 variants={fadeUpVariant}
                 className="text-lg text-muted-foreground mb-8 max-w-xl"
               >
-                We help biotech, pharmaceutical, and medical device companies transform complex science into compelling stories that drive engagement and accelerate growth.
+                We partner with biotech, pharmaceutical, and medical device companies to transform breakthrough science into market success. From pre-launch to commercial leadership.
               </motion.p>
               <motion.div variants={fadeUpVariant} className="flex flex-wrap gap-4">
                 <Link to="/contact">
@@ -146,7 +142,7 @@ export default function HomePage() {
                     className="rounded-full px-8 btn-glow"
                     data-testid="hero-cta-primary"
                   >
-                    Start Your Project
+                    Schedule a Consultation
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
@@ -157,7 +153,7 @@ export default function HomePage() {
                     className="rounded-full px-8"
                     data-testid="hero-cta-secondary"
                   >
-                    View Our Work
+                    View Case Studies
                   </Button>
                 </Link>
               </motion.div>
@@ -171,8 +167,8 @@ export default function HomePage() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1631556760585-2e846196d5a9?w=800"
-                  alt="Life sciences research"
+                  src="https://images.unsplash.com/photo-1760074032600-36943c264fbf?w=800"
+                  alt="Scientists collaborating in modern laboratory"
                   className="w-full h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
@@ -199,19 +195,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Client Logos */}
-      <section className="py-12 border-y border-border bg-muted/30">
+      {/* Client Logos - Real Looking */}
+      <section className="py-16 border-y border-border bg-muted/30">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <p className="text-center text-sm text-muted-foreground mb-8">
+          <p className="text-center text-sm text-muted-foreground mb-10 uppercase tracking-wider">
             Trusted by leading life sciences companies
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {clientLogos.map((logo, i) => (
-              <div 
-                key={i}
-                className="text-xl font-heading font-semibold text-muted-foreground/50"
-              >
-                {logo}
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+            {[
+              { name: "Meridian", sub: "THERAPEUTICS" },
+              { name: "HELIX", sub: "GENOMICS" },
+              { name: "APEX", sub: "SURGICAL" },
+              { name: "Orion", sub: "RARE DISEASE" },
+              { name: "CardioVance", sub: "MEDICAL" },
+              { name: "PRECISION", sub: "DIAGNOSTICS" }
+            ].map((client, i) => (
+              <div key={i} className="text-center group cursor-default">
+                <div className="font-heading font-bold text-xl text-foreground/60 group-hover:text-primary transition-colors">
+                  {client.name}
+                </div>
+                <div className="text-[10px] tracking-[0.2em] text-muted-foreground/60 font-medium">
+                  {client.sub}
+                </div>
               </div>
             ))}
           </div>
@@ -232,7 +237,7 @@ export default function HomePage() {
               variants={fadeUpVariant}
               className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
             >
-              Our Services
+              Our Capabilities
             </motion.span>
             <motion.h2 
               variants={fadeUpVariant}
@@ -244,7 +249,7 @@ export default function HomePage() {
               variants={fadeUpVariant}
               className="text-muted-foreground max-w-2xl mx-auto"
             >
-              From strategy to execution, we provide comprehensive marketing solutions designed specifically for the life sciences industry.
+              From pre-clinical to commercial, we provide end-to-end marketing solutions built specifically for the unique challenges of healthcare and life sciences.
             </motion.p>
           </motion.div>
 
@@ -316,7 +321,7 @@ export default function HomePage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div>
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Our Work
+                Client Success Stories
               </span>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">
                 Featured Case Studies
@@ -353,11 +358,12 @@ export default function HomePage() {
                     </div>
                   </div>
                   <CardContent className="p-6">
+                    <p className="text-sm text-primary font-medium mb-1">{study.client}</p>
                     <h3 className="font-heading font-semibold text-lg mb-2 text-foreground group-hover:text-primary transition-colors">
                       {study.title}
                     </h3>
                     <p className="text-muted-foreground text-sm line-clamp-2">
-                      {study.challenge}
+                      {study.results[0]}
                     </p>
                   </CardContent>
                 </Card>
@@ -372,7 +378,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Client Success
+              Client Testimonials
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">
               What Our Clients Say
@@ -390,7 +396,7 @@ export default function HomePage() {
                 className="testimonial-card rounded-2xl p-8 border border-border/50"
               >
                 <Quote className="w-10 h-10 text-primary/30 mb-4" />
-                <p className="text-foreground mb-6 leading-relaxed">
+                <p className="text-foreground mb-6 leading-relaxed text-sm">
                   "{testimonial.quote}"
                 </p>
                 <div className="flex items-center gap-4">
@@ -400,8 +406,8 @@ export default function HomePage() {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                   <div>
-                    <p className="font-semibold text-foreground">{testimonial.author}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-semibold text-foreground text-sm">{testimonial.author}</p>
+                    <p className="text-xs text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
               </motion.div>
@@ -415,8 +421,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="relative rounded-3xl overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1719163534402-ba86dcb55228?w=1200"
-              alt="Abstract biotech background"
+              src="https://images.unsplash.com/photo-1576765608689-c0e8f69a46b2?w=1200"
+              alt="Laboratory research"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-foreground/85" />
