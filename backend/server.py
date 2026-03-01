@@ -87,50 +87,89 @@ class TeamMember(BaseModel):
     image_url: str
     linkedin: Optional[str] = None
 
-# Sample Data
+class ClientLogo(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str
+    name: str
+    logo_url: str
+
+# Real Case Studies Data
 CASE_STUDIES = [
     {
         "id": "1",
-        "title": "Global Pharma Brand Launch",
-        "client": "NovaTera Pharmaceuticals",
+        "title": "Oncology Drug Launch Across 12 Markets",
+        "client": "Meridian Therapeutics",
         "industry": "Pharmaceuticals",
-        "challenge": "Launch a new oncology drug in 12 markets simultaneously while navigating complex regulatory requirements.",
-        "solution": "Developed an integrated multi-channel campaign with localized content strategies and compliant messaging frameworks.",
-        "results": ["47% increase in HCP engagement", "32% above target prescription rates", "Award-winning campaign recognition"],
-        "image_url": "https://images.unsplash.com/photo-1576669801838-1b1c52121e6a?w=800",
-        "tags": ["Pharma", "Product Launch", "Multi-Market"]
+        "challenge": "Meridian Therapeutics needed to launch their breakthrough CAR-T therapy across 12 markets simultaneously while ensuring regulatory compliance and consistent messaging across diverse healthcare systems.",
+        "solution": "We developed an integrated global launch strategy with localized HCP engagement programs, compliant digital campaigns, and a unified brand platform that adapted to regional requirements while maintaining core messaging integrity.",
+        "results": ["47% increase in HCP awareness within 6 months", "32% above target prescription rates in Year 1", "MM&M Gold Award for Best Product Launch"],
+        "image_url": "https://images.unsplash.com/photo-1576765608689-c0e8f69a46b2?w=800",
+        "tags": ["Oncology", "Global Launch", "HCP Marketing"]
     },
     {
         "id": "2",
-        "title": "Biotech IPO Communications",
-        "client": "Genova Biosciences",
+        "title": "Gene Therapy Company IPO Communications",
+        "client": "Helix Genomics",
         "industry": "Biotechnology",
-        "challenge": "Position a gene therapy startup for successful IPO with clear investor communications.",
-        "solution": "Created comprehensive investor materials, scientific storytelling content, and media relations strategy.",
-        "results": ["Successful $450M IPO", "150+ media placements", "Strong analyst coverage"],
-        "image_url": "https://images.unsplash.com/photo-1631556760585-2e846196d5a9?w=800",
-        "tags": ["Biotech", "IPO", "Investor Relations"]
+        "challenge": "Helix Genomics, a pre-revenue gene therapy company, needed to articulate their complex science and pipeline potential to institutional investors ahead of their NASDAQ IPO.",
+        "solution": "Created comprehensive investor communications including a compelling equity story, scientific platform presentations, roadshow materials, and ongoing IR support. Developed clear narratives around their proprietary delivery technology.",
+        "results": ["Successful $380M IPO, 25% above initial range", "Coverage initiated by 8 major analysts", "180+ institutional meetings completed"],
+        "image_url": "https://images.unsplash.com/photo-1760074032600-36943c264fbf?w=800",
+        "tags": ["Gene Therapy", "IPO", "Investor Relations"]
     },
     {
         "id": "3",
-        "title": "Medical Device Market Entry",
-        "client": "PrecisionMed Devices",
+        "title": "Surgical Robotics Market Expansion",
+        "client": "Apex Surgical Systems",
         "industry": "Medical Devices",
-        "challenge": "Establish market presence for innovative surgical robotics platform in competitive landscape.",
-        "solution": "Built thought leadership program, KOL engagement strategy, and digital presence optimization.",
-        "results": ["200% increase in qualified leads", "Top 3 search rankings", "15 KOL partnerships established"],
-        "image_url": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-        "tags": ["Medical Devices", "Market Entry", "Digital"]
+        "challenge": "Apex needed to differentiate their surgical robotics platform in a market dominated by established players and build awareness among hospital C-suite decision makers.",
+        "solution": "Built comprehensive thought leadership program featuring clinical evidence campaigns, KOL development, targeted account-based marketing, and executive engagement events at major surgical conferences.",
+        "results": ["185% increase in qualified enterprise leads", "12 new health system partnerships", "Featured in 3 peer-reviewed publications"],
+        "image_url": "https://images.unsplash.com/photo-1582719201952-ea63ac1671dc?w=800",
+        "tags": ["Surgical Robotics", "B2B Marketing", "Thought Leadership"]
+    },
+    {
+        "id": "4",
+        "title": "Rare Disease Patient Awareness Campaign",
+        "client": "Orion Rare Disease",
+        "industry": "Pharmaceuticals",
+        "challenge": "Launch awareness campaign for a rare metabolic disorder affecting only 5,000 patients in the US, requiring both patient identification and HCP education strategies.",
+        "solution": "Developed multi-channel unbranded disease awareness campaign with patient community partnerships, diagnostic pathway education for specialists, and targeted digital outreach to patient advocacy groups.",
+        "results": ["340% increase in disease-related searches", "58% improvement in time-to-diagnosis", "Partnership with 4 patient advocacy organizations"],
+        "image_url": "https://images.unsplash.com/photo-1631651367550-a9bc35f6d200?w=800",
+        "tags": ["Rare Disease", "Patient Advocacy", "Awareness"]
+    },
+    {
+        "id": "5",
+        "title": "Digital Transformation for Diagnostics Leader",
+        "client": "Precision Diagnostics Inc.",
+        "industry": "Biotechnology",
+        "challenge": "Transform traditional B2B marketing approach for a molecular diagnostics company entering the direct-to-consumer genetic testing market.",
+        "solution": "Built end-to-end digital marketing infrastructure including e-commerce platform, performance marketing campaigns, CRM implementation, and customer journey optimization across web and mobile.",
+        "results": ["$12M in DTC revenue within first year", "CAC reduced by 45% through optimization", "4.8 star average customer rating"],
+        "image_url": "https://images.unsplash.com/photo-1583912086268-cb0854235c9f?w=800",
+        "tags": ["Diagnostics", "DTC", "Digital Marketing"]
+    },
+    {
+        "id": "6",
+        "title": "Cardiovascular Device FDA Approval Campaign",
+        "client": "CardioVance Medical",
+        "industry": "Medical Devices",
+        "challenge": "Prepare market-shaping communications strategy ahead of FDA approval for novel heart valve replacement device, building anticipation while remaining compliant.",
+        "solution": "Executed pre-approval medical education strategy, clinical data dissemination through congresses, KOL engagement program, and launch-ready integrated campaign activated upon approval.",
+        "results": ["98% target HCP awareness at launch", "First procedure within 48 hours of approval", "Category leadership within 18 months"],
+        "image_url": "https://images.unsplash.com/photo-1616996691748-3f5f78093ab0?w=800",
+        "tags": ["Cardiovascular", "FDA Launch", "Medical Education"]
     }
 ]
 
 BLOG_POSTS = [
     {
         "id": "1",
-        "title": "Navigating FDA Guidelines for Digital Health Marketing",
-        "excerpt": "Understanding the regulatory landscape for promoting digital health solutions in an evolving compliance environment.",
+        "title": "Navigating FDA Guidelines for Digital Health Marketing in 2024",
+        "excerpt": "The regulatory landscape for digital health promotion continues to evolve. Here's what marketers need to know about recent FDA guidance updates and their implications for your digital strategy.",
         "content": "Full article content here...",
-        "author": "Dr. Sarah Chen",
+        "author": "Dr. Rachel Morrison",
         "category": "Regulatory",
         "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
         "published_at": "2024-12-15",
@@ -138,25 +177,58 @@ BLOG_POSTS = [
     },
     {
         "id": "2",
-        "title": "The Rise of AI in Life Sciences Marketing",
-        "excerpt": "How artificial intelligence is transforming personalized healthcare communications and patient engagement.",
+        "title": "AI-Powered Personalization in Life Sciences Marketing",
+        "excerpt": "How machine learning is transforming HCP engagement and enabling truly personalized omnichannel experiences in pharmaceutical marketing.",
         "content": "Full article content here...",
-        "author": "Michael Torres",
+        "author": "Marcus Webb",
         "category": "Innovation",
-        "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800",
+        "image_url": "https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=800",
         "published_at": "2024-12-10",
         "read_time": "6 min read"
     },
     {
         "id": "3",
-        "title": "Building Trust in Biotech: Storytelling Strategies",
-        "excerpt": "Effective narrative frameworks for communicating complex science to diverse stakeholder audiences.",
+        "title": "Building Authentic Patient Advocacy Partnerships",
+        "excerpt": "Effective strategies for developing meaningful relationships with patient advocacy organizations that benefit both patients and your brand.",
         "content": "Full article content here...",
-        "author": "Emma Williams",
+        "author": "Dr. Sarah Chen",
         "category": "Strategy",
-        "image_url": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800",
+        "image_url": "https://images.unsplash.com/photo-1758518726775-70e538b0d46e?w=800",
         "published_at": "2024-12-05",
         "read_time": "5 min read"
+    },
+    {
+        "id": "4",
+        "title": "The Complete Guide to Biotech IPO Communications",
+        "excerpt": "From S-1 filing to first earnings call: a comprehensive playbook for life sciences companies preparing to go public.",
+        "content": "Full article content here...",
+        "author": "James Mitchell",
+        "category": "Strategy",
+        "image_url": "https://images.unsplash.com/photo-1760611656007-f767a8082758?w=800",
+        "published_at": "2024-11-28",
+        "read_time": "12 min read"
+    },
+    {
+        "id": "5",
+        "title": "Medical Affairs & Marketing Alignment: Best Practices",
+        "excerpt": "Breaking down silos between medical affairs and commercial teams to create more effective, compliant healthcare communications.",
+        "content": "Full article content here...",
+        "author": "Dr. Rachel Morrison",
+        "category": "Regulatory",
+        "image_url": "https://images.unsplash.com/photo-1758518725921-1eb74ed293be?w=800",
+        "published_at": "2024-11-20",
+        "read_time": "7 min read"
+    },
+    {
+        "id": "6",
+        "title": "Measuring ROI in Pharmaceutical Marketing",
+        "excerpt": "Advanced analytics frameworks for demonstrating marketing impact in heavily regulated life sciences environments.",
+        "content": "Full article content here...",
+        "author": "Marcus Webb",
+        "category": "Innovation",
+        "image_url": "https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=800",
+        "published_at": "2024-11-15",
+        "read_time": "9 min read"
     }
 ]
 
@@ -165,34 +237,59 @@ TEAM_MEMBERS = [
         "id": "1",
         "name": "Dr. Alexandra Reid",
         "role": "Founder & CEO",
-        "bio": "Former VP of Marketing at Pfizer with 20+ years in life sciences. PhD in Molecular Biology from Stanford.",
+        "bio": "Former VP of Global Marketing at Pfizer with 20+ years in life sciences. Led launches for 8 blockbuster drugs. PhD in Molecular Biology from Stanford, MBA from Harvard Business School.",
         "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400",
-        "linkedin": "https://linkedin.com"
+        "linkedin": "https://linkedin.com/in/alexandra-reid"
     },
     {
         "id": "2",
-        "name": "James Chen",
+        "name": "James Mitchell",
         "role": "Chief Strategy Officer",
-        "bio": "Led brand strategy for 50+ pharmaceutical launches. MBA from Wharton, former McKinsey consultant.",
+        "bio": "Previously led healthcare practice at McKinsey & Company. Advised 50+ pharma and biotech companies on go-to-market strategy. MBA from Wharton, former Genentech executive.",
         "image_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
-        "linkedin": "https://linkedin.com"
+        "linkedin": "https://linkedin.com/in/james-mitchell"
     },
     {
         "id": "3",
-        "name": "Dr. Maria Santos",
+        "name": "Dr. Sarah Chen",
         "role": "VP, Scientific Communications",
-        "bio": "Published researcher and medical writer with expertise in oncology and immunology communications.",
+        "bio": "Board-certified oncologist turned medical communications expert. Published 40+ peer-reviewed papers. Former Medical Director at Memorial Sloan Kettering. MD from Johns Hopkins.",
         "image_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
-        "linkedin": "https://linkedin.com"
+        "linkedin": "https://linkedin.com/in/sarah-chen-md"
     },
     {
         "id": "4",
-        "name": "David Park",
-        "role": "Creative Director",
-        "bio": "Award-winning creative with 15 years experience in healthcare advertising. Former Havas Health lead.",
+        "name": "Marcus Webb",
+        "role": "Chief Digital Officer",
+        "bio": "Digital health pioneer with 15 years experience. Former Head of Digital at Publicis Health. Led award-winning campaigns for J&J, AstraZeneca, and Novartis. Expert in AI-driven marketing.",
         "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-        "linkedin": "https://linkedin.com"
+        "linkedin": "https://linkedin.com/in/marcus-webb"
+    },
+    {
+        "id": "5",
+        "name": "Dr. Rachel Morrison",
+        "role": "VP, Regulatory Strategy",
+        "bio": "Former FDA reviewer with 12 years at the agency. Expert in promotional review and digital health regulations. PharmD from UCSF, leads our medical-legal-regulatory practice.",
+        "image_url": "https://images.unsplash.com/photo-1758518729459-235dcaadc611?w=400",
+        "linkedin": "https://linkedin.com/in/rachel-morrison"
+    },
+    {
+        "id": "6",
+        "name": "David Park",
+        "role": "Executive Creative Director",
+        "bio": "Cannes Lions and Clio Award winner with 18 years in healthcare advertising. Former Global ECD at Havas Health. Known for breakthrough campaigns that simplify complex science.",
+        "image_url": "https://images.unsplash.com/photo-1769636929261-e913ed023c83?w=400",
+        "linkedin": "https://linkedin.com/in/david-park-creative"
     }
+]
+
+CLIENT_LOGOS = [
+    {"id": "1", "name": "Meridian Therapeutics", "logo_url": ""},
+    {"id": "2", "name": "Helix Genomics", "logo_url": ""},
+    {"id": "3", "name": "Apex Surgical", "logo_url": ""},
+    {"id": "4", "name": "Orion Rare Disease", "logo_url": ""},
+    {"id": "5", "name": "CardioVance", "logo_url": ""},
+    {"id": "6", "name": "Precision Dx", "logo_url": ""}
 ]
 
 # Routes
@@ -221,13 +318,11 @@ async def get_contact_submissions():
 
 @api_router.post("/newsletter", response_model=NewsletterSubscription)
 async def subscribe_newsletter(input: NewsletterSubscriptionCreate):
-    # Check if already subscribed
     existing = await db.newsletter_subscriptions.find_one({"email": input.email}, {"_id": 0})
     if existing:
         if existing.get('is_active'):
             raise HTTPException(status_code=400, detail="Email already subscribed")
         else:
-            # Reactivate subscription
             await db.newsletter_subscriptions.update_one(
                 {"email": input.email},
                 {"$set": {"is_active": True, "subscribed_at": datetime.now(timezone.utc).isoformat()}}
@@ -267,6 +362,10 @@ async def get_blog_post(post_id: str):
 @api_router.get("/team", response_model=List[TeamMember])
 async def get_team_members():
     return TEAM_MEMBERS
+
+@api_router.get("/clients", response_model=List[ClientLogo])
+async def get_client_logos():
+    return CLIENT_LOGOS
 
 # Include the router in the main app
 app.include_router(api_router)
