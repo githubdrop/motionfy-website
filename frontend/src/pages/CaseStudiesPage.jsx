@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Filter } from "lucide-react";
+import { ArrowRight, Filter, X } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -59,7 +59,7 @@ export default function CaseStudiesPage() {
               variants={fadeUpVariant}
               className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
             >
-              Our Work
+              Client Success Stories
             </motion.span>
             <motion.h1 
               variants={fadeUpVariant}
@@ -71,20 +71,19 @@ export default function CaseStudiesPage() {
               variants={fadeUpVariant}
               className="text-lg text-muted-foreground"
             >
-              Explore how we've helped leading life sciences companies achieve their marketing goals 
-              and drive measurable business results.
+              See how we've helped leading life sciences companies achieve their commercial goals through strategic marketing, creative excellence, and deep industry expertise.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 border-b border-border">
+      <section className="py-8 border-b border-border sticky top-16 bg-background/95 backdrop-blur-sm z-40">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Filter className="w-4 h-4" />
-              <span className="text-sm font-medium">Filter by:</span>
+              <span className="text-sm font-medium">Filter by industry:</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {industries.map((industry) => (
@@ -135,7 +134,7 @@ export default function CaseStudiesPage() {
                       <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm text-white border-none mb-2">
                         {study.industry}
                       </Badge>
-                      <h3 className="font-heading font-semibold text-xl text-white">
+                      <h3 className="font-heading font-semibold text-lg text-white line-clamp-2">
                         {study.title}
                       </h3>
                     </div>
@@ -167,92 +166,103 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Study Detail Modal */}
-      {selectedStudy && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-foreground/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedStudy(null)}
-          data-testid="case-study-modal"
-        >
+      <AnimatePresence>
+        {selectedStudy && (
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            className="bg-background rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-foreground/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedStudy(null)}
+            data-testid="case-study-modal"
           >
-            <div className="relative h-64 md:h-80">
-              <img 
-                src={selectedStudy.image_url}
-                alt={selectedStudy.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
-              <button
-                onClick={() => setSelectedStudy(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-                data-testid="close-modal-button"
-              >
-                ×
-              </button>
-              <div className="absolute bottom-6 left-6 right-6">
-                <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm text-white border-none mb-3">
-                  {selectedStudy.industry}
-                </Badge>
-                <h2 className="font-heading text-2xl md:text-3xl font-bold text-white">
-                  {selectedStudy.title}
-                </h2>
-                <p className="text-white/80 mt-2">{selectedStudy.client}</p>
-              </div>
-            </div>
-            <div className="p-8">
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="md:col-span-2 space-y-6">
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg text-foreground mb-2">
-                      The Challenge
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {selectedStudy.challenge}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-lg text-foreground mb-2">
-                      Our Solution
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {selectedStudy.solution}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-heading font-semibold text-lg text-foreground mb-4">
-                    Results
-                  </h3>
-                  <ul className="space-y-3">
-                    {selectedStudy.results.map((result, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                        <span className="text-foreground">{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8">
-                    <Link to="/contact">
-                      <Button className="w-full rounded-full" data-testid="modal-contact-cta">
-                        Start Your Project
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </Button>
-                    </Link>
-                  </div>
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-background rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-64 md:h-80">
+                <img 
+                  src={selectedStudy.image_url}
+                  alt={selectedStudy.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+                <button
+                  onClick={() => setSelectedStudy(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+                  data-testid="close-modal-button"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm text-white border-none mb-3">
+                    {selectedStudy.industry}
+                  </Badge>
+                  <h2 className="font-heading text-2xl md:text-3xl font-bold text-white">
+                    {selectedStudy.title}
+                  </h2>
+                  <p className="text-white/80 mt-2">{selectedStudy.client}</p>
                 </div>
               </div>
-            </div>
+              <div className="p-8">
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="md:col-span-2 space-y-6">
+                    <div>
+                      <h3 className="font-heading font-semibold text-lg text-foreground mb-3">
+                        The Challenge
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {selectedStudy.challenge}
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-semibold text-lg text-foreground mb-3">
+                        Our Solution
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {selectedStudy.solution}
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 pt-4">
+                      {selectedStudy.tags.map((tag, i) => (
+                        <Badge key={i} variant="outline">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-lg text-foreground mb-4">
+                      Key Results
+                    </h3>
+                    <ul className="space-y-4">
+                      {selectedStudy.results.map((result, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-primary text-xs font-bold">{i + 1}</span>
+                          </div>
+                          <span className="text-foreground text-sm">{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-8">
+                      <Link to="/contact" onClick={() => setSelectedStudy(null)}>
+                        <Button className="w-full rounded-full" data-testid="modal-contact-cta">
+                          Discuss Your Project
+                          <ArrowRight className="ml-2 w-4 h-4" />
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* CTA Section */}
       <section className="py-24 md:py-32 bg-muted/30">
@@ -261,7 +271,7 @@ export default function CaseStudiesPage() {
             Ready to Be Our Next Success Story?
           </h2>
           <p className="text-muted-foreground text-lg mb-8">
-            Let's discuss how we can help achieve similar results for your organization.
+            Let's discuss how BioLumina can help achieve breakthrough results for your organization.
           </p>
           <Link to="/contact">
             <Button 
@@ -269,7 +279,7 @@ export default function CaseStudiesPage() {
               className="rounded-full px-10 btn-glow"
               data-testid="case-studies-cta"
             >
-              Start Your Project
+              Schedule a Consultation
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </Link>
