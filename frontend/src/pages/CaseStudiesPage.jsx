@@ -12,20 +12,11 @@ const API = `${BACKEND_URL}/api`;
 
 const industries = ["All", "Pharmaceuticals", "Biotechnology", "Medical Devices"];
 
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-};
-
 export default function CaseStudiesPage() {
   const [caseStudies, setCaseStudies] = useState([]);
   const [selectedIndustry, setSelectedIndustry] = useState("All");
   const [selectedStudy, setSelectedStudy] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCaseStudies = async () => {
@@ -34,6 +25,8 @@ export default function CaseStudiesPage() {
         setCaseStudies(response.data);
       } catch (error) {
         console.error("Error fetching case studies:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchCaseStudies();
@@ -49,31 +42,17 @@ export default function CaseStudiesPage() {
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 hero-pattern">
         <div className="absolute inset-0 hero-glow" />
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="max-w-3xl"
-          >
-            <motion.span 
-              variants={fadeUpVariant}
-              className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
-            >
+          <div className="max-w-3xl animate-fade-up">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               Client Success Stories
-            </motion.span>
-            <motion.h1 
-              variants={fadeUpVariant}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
-            >
+            </span>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
               Case Studies
-            </motion.h1>
-            <motion.p 
-              variants={fadeUpVariant}
-              className="text-lg text-muted-foreground"
-            >
+            </h1>
+            <p className="text-lg text-muted-foreground">
               See how we've helped leading life sciences companies achieve their commercial goals through strategic marketing, creative excellence, and deep industry expertise.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -106,58 +85,70 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid */}
       <section className="py-24 md:py-32" data-testid="case-studies-grid">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredStudies.map((study, i) => (
-              <motion.div
-                key={study.id}
-                variants={fadeUpVariant}
-                layout
-              >
-                <Card 
-                  className="overflow-hidden group cursor-pointer border-border/50 hover:shadow-2xl transition-all duration-500 h-full"
-                  onClick={() => setSelectedStudy(study)}
-                  data-testid={`case-study-card-${study.id}`}
-                >
-                  <div className="relative h-56 overflow-hidden">
-                    <img 
-                      src={study.image_url}
-                      alt={study.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm text-white border-none mb-2">
-                        {study.industry}
-                      </Badge>
-                      <h3 className="font-heading font-semibold text-lg text-white line-clamp-2">
-                        {study.title}
-                      </h3>
-                    </div>
+          {loading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-muted h-56 rounded-t-xl" />
+                  <div className="p-6 space-y-3">
+                    <div className="bg-muted h-4 w-1/3 rounded" />
+                    <div className="bg-muted h-6 w-2/3 rounded" />
+                    <div className="bg-muted h-4 w-full rounded" />
                   </div>
-                  <CardContent className="p-6">
-                    <p className="text-sm text-primary font-medium mb-2">{study.client}</p>
-                    <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
-                      {study.challenge}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {study.tags.slice(0, 3).map((tag, j) => (
-                        <Badge key={j} variant="outline" className="text-xs">
-                          {tag}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredStudies.map((study, i) => (
+                <motion.div
+                  key={study.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                  layout
+                >
+                  <Card 
+                    className="overflow-hidden group cursor-pointer border-border/50 hover:shadow-2xl transition-all duration-500 h-full"
+                    onClick={() => setSelectedStudy(study)}
+                    data-testid={`case-study-card-${study.id}`}
+                  >
+                    <div className="relative h-56 overflow-hidden">
+                      <img 
+                        src={study.image_url}
+                        alt={study.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <Badge variant="secondary" className="bg-white/20 backdrop-blur-sm text-white border-none mb-2">
+                          {study.industry}
                         </Badge>
-                      ))}
+                        <h3 className="font-heading font-semibold text-lg text-white line-clamp-2">
+                          {study.title}
+                        </h3>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                    <CardContent className="p-6">
+                      <p className="text-sm text-primary font-medium mb-2">{study.client}</p>
+                      <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                        {study.challenge}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {study.tags.slice(0, 3).map((tag, j) => (
+                          <Badge key={j} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
 
-          {filteredStudies.length === 0 && (
+          {!loading && filteredStudies.length === 0 && (
             <div className="text-center py-20">
               <p className="text-muted-foreground">No case studies found for this industry.</p>
             </div>

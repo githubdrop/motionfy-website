@@ -13,20 +13,11 @@ const API = `${BACKEND_URL}/api`;
 
 const categories = ["All", "Regulatory", "Innovation", "Strategy", "Industry News"];
 
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
-};
-
 export default function BlogPage() {
   const [posts, setPosts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,6 +26,8 @@ export default function BlogPage() {
         setPosts(response.data);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchPosts();
@@ -55,32 +48,18 @@ export default function BlogPage() {
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 hero-pattern">
         <div className="absolute inset-0 hero-glow" />
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="max-w-3xl"
-          >
-            <motion.span 
-              variants={fadeUpVariant}
-              className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
-            >
+          <div className="max-w-3xl animate-fade-up">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               Resources & Insights
-            </motion.span>
-            <motion.h1 
-              variants={fadeUpVariant}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
-            >
+            </span>
+            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
               Blog & Resources
-            </motion.h1>
-            <motion.p 
-              variants={fadeUpVariant}
-              className="text-lg text-muted-foreground"
-            >
+            </h1>
+            <p className="text-lg text-muted-foreground">
               Stay informed with the latest insights, trends, and best practices 
               in life sciences marketing from our team of experts.
-            </motion.p>
-          </motion.div>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -88,11 +67,7 @@ export default function BlogPage() {
       {featuredPost && (
         <section className="py-12 border-b border-border">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="grid md:grid-cols-2 gap-8 items-center"
-            >
+            <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="relative rounded-3xl overflow-hidden h-[300px] md:h-[400px]">
                 <img 
                   src={featuredPost.image_url}
@@ -125,7 +100,7 @@ export default function BlogPage() {
                   Read Article <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
@@ -165,58 +140,70 @@ export default function BlogPage() {
       {/* Blog Posts Grid */}
       <section className="py-24 md:py-32" data-testid="blog-posts-grid">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredPosts.map((post, i) => (
-              <motion.div
-                key={post.id}
-                variants={fadeUpVariant}
-                layout
-              >
-                <Card 
-                  className="overflow-hidden group cursor-pointer border-border/50 hover:shadow-xl transition-all duration-500 h-full"
-                  data-testid={`blog-post-card-${post.id}`}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={post.image_url}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm">
-                        {post.category}
-                      </Badge>
-                    </div>
+          {loading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-muted h-48 rounded-t-xl" />
+                  <div className="p-6 space-y-3">
+                    <div className="bg-muted h-4 w-1/3 rounded" />
+                    <div className="bg-muted h-6 w-2/3 rounded" />
+                    <div className="bg-muted h-4 w-full rounded" />
                   </div>
-                  <CardContent className="p-6">
-                    <h3 className="font-heading font-semibold text-lg mb-2 text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <User className="w-4 h-4" />
-                        <span className="truncate max-w-[100px]">{post.author}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Clock className="w-4 h-4" />
-                        {post.read_time}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, i) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                  layout
+                >
+                  <Card 
+                    className="overflow-hidden group cursor-pointer border-border/50 hover:shadow-xl transition-all duration-500 h-full"
+                    data-testid={`blog-post-card-${post.id}`}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={post.image_url}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm">
+                          {post.category}
+                        </Badge>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                    <CardContent className="p-6">
+                      <h3 className="font-heading font-semibold text-lg mb-2 text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <User className="w-4 h-4" />
+                          <span className="truncate max-w-[100px]">{post.author}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {post.read_time}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
 
-          {filteredPosts.length === 0 && (
+          {!loading && filteredPosts.length === 0 && (
             <div className="text-center py-20">
               <p className="text-muted-foreground">No articles found matching your criteria.</p>
             </div>
