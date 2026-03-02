@@ -19,9 +19,7 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,97 +33,51 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`max-w-7xl mx-auto rounded-full transition-all duration-300 ${
-          scrolled ? "navbar-glass shadow-lg" : "bg-transparent"
-        }`}
+        className={`max-w-7xl mx-auto rounded-full transition-all duration-300 ${scrolled ? "navbar-glass shadow-lg" : "bg-white/80 backdrop-blur-sm"}`}
       >
         <div className="flex items-center justify-between px-6 py-3">
-          {/* Logo */}
-          <Link 
-            to="/" 
-            className="flex items-center gap-2 group"
-            data-testid="navbar-logo"
-          >
+          <Link to="/" className="flex items-center gap-2 group" data-testid="navbar-logo">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
               <FlaskConical className="w-5 h-5 text-white" />
             </div>
-            <span className="font-heading font-bold text-xl text-foreground">
-              BioLumina
-            </span>
+            <span className="font-heading font-bold text-xl text-foreground">Motionfy</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 data-testid={`nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  location.pathname === link.path
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${location.pathname === link.path ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}
               >
                 {link.name}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden lg:block">
             <Link to="/contact">
-              <Button 
-                className="rounded-full px-6 btn-glow"
-                data-testid="nav-cta-button"
-              >
-                Get Started
-              </Button>
+              <Button className="rounded-full px-6 btn-glow" data-testid="nav-cta-button">Get Started</Button>
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-full hover:bg-muted transition-colors"
-            data-testid="mobile-menu-toggle"
-            aria-label="Toggle menu"
-          >
+          <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 rounded-full hover:bg-muted transition-colors" data-testid="mobile-menu-toggle">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden overflow-hidden"
-            >
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="lg:hidden overflow-hidden">
               <div className="px-6 pb-6 pt-2 space-y-2">
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    data-testid={`mobile-nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
-                    className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${
-                      location.pathname === link.path
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                    }`}
-                  >
+                  <Link key={link.path} to={link.path} className={`block px-4 py-3 rounded-xl text-base font-medium transition-all ${location.pathname === link.path ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
                     {link.name}
                   </Link>
                 ))}
                 <Link to="/contact" className="block pt-2">
-                  <Button 
-                    className="w-full rounded-full btn-glow"
-                    data-testid="mobile-cta-button"
-                  >
-                    Get Started
-                  </Button>
+                  <Button className="w-full rounded-full btn-glow">Get Started</Button>
                 </Link>
               </div>
             </motion.div>

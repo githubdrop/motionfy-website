@@ -13,18 +13,14 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Create the main app without a prefix
 app = FastAPI()
-
-# Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-# Define Models
+# Models
 class ContactSubmission(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -54,46 +50,7 @@ class NewsletterSubscription(BaseModel):
 class NewsletterSubscriptionCreate(BaseModel):
     email: EmailStr
 
-class CaseStudy(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    id: str
-    title: str
-    client: str
-    industry: str
-    challenge: str
-    solution: str
-    results: List[str]
-    image_url: str
-    tags: List[str]
-
-class BlogPost(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    id: str
-    title: str
-    excerpt: str
-    content: str
-    author: str
-    category: str
-    image_url: str
-    published_at: str
-    read_time: str
-
-class TeamMember(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    id: str
-    name: str
-    role: str
-    bio: str
-    image_url: str
-    linkedin: Optional[str] = None
-
-class ClientLogo(BaseModel):
-    model_config = ConfigDict(extra="ignore")
-    id: str
-    name: str
-    logo_url: str
-
-# Real Case Studies Data
+# Static Data
 CASE_STUDIES = [
     {
         "id": "1",
@@ -103,7 +60,7 @@ CASE_STUDIES = [
         "challenge": "Meridian Therapeutics needed to launch their breakthrough CAR-T therapy across 12 markets simultaneously while ensuring regulatory compliance and consistent messaging across diverse healthcare systems.",
         "solution": "We developed an integrated global launch strategy with localized HCP engagement programs, compliant digital campaigns, and a unified brand platform that adapted to regional requirements while maintaining core messaging integrity.",
         "results": ["47% increase in HCP awareness within 6 months", "32% above target prescription rates in Year 1", "MM&M Gold Award for Best Product Launch"],
-        "image_url": "https://images.unsplash.com/photo-1576765608689-c0e8f69a46b2?w=800",
+        "image_url": "https://images.unsplash.com/photo-1576765608689-c0e8f69a46b2?w=800&q=80",
         "tags": ["Oncology", "Global Launch", "HCP Marketing"]
     },
     {
@@ -112,9 +69,9 @@ CASE_STUDIES = [
         "client": "Helix Genomics",
         "industry": "Biotechnology",
         "challenge": "Helix Genomics, a pre-revenue gene therapy company, needed to articulate their complex science and pipeline potential to institutional investors ahead of their NASDAQ IPO.",
-        "solution": "Created comprehensive investor communications including a compelling equity story, scientific platform presentations, roadshow materials, and ongoing IR support. Developed clear narratives around their proprietary delivery technology.",
+        "solution": "Created comprehensive investor communications including a compelling equity story, scientific platform presentations, roadshow materials, and ongoing IR support.",
         "results": ["Successful $380M IPO, 25% above initial range", "Coverage initiated by 8 major analysts", "180+ institutional meetings completed"],
-        "image_url": "https://images.unsplash.com/photo-1760074032600-36943c264fbf?w=800",
+        "image_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80",
         "tags": ["Gene Therapy", "IPO", "Investor Relations"]
     },
     {
@@ -123,9 +80,9 @@ CASE_STUDIES = [
         "client": "Apex Surgical Systems",
         "industry": "Medical Devices",
         "challenge": "Apex needed to differentiate their surgical robotics platform in a market dominated by established players and build awareness among hospital C-suite decision makers.",
-        "solution": "Built comprehensive thought leadership program featuring clinical evidence campaigns, KOL development, targeted account-based marketing, and executive engagement events at major surgical conferences.",
+        "solution": "Built comprehensive thought leadership program featuring clinical evidence campaigns, KOL development, targeted account-based marketing, and executive engagement events.",
         "results": ["185% increase in qualified enterprise leads", "12 new health system partnerships", "Featured in 3 peer-reviewed publications"],
-        "image_url": "https://images.unsplash.com/photo-1582719201952-ea63ac1671dc?w=800",
+        "image_url": "https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=800&q=80",
         "tags": ["Surgical Robotics", "B2B Marketing", "Thought Leadership"]
     },
     {
@@ -134,9 +91,9 @@ CASE_STUDIES = [
         "client": "Orion Rare Disease",
         "industry": "Pharmaceuticals",
         "challenge": "Launch awareness campaign for a rare metabolic disorder affecting only 5,000 patients in the US, requiring both patient identification and HCP education strategies.",
-        "solution": "Developed multi-channel unbranded disease awareness campaign with patient community partnerships, diagnostic pathway education for specialists, and targeted digital outreach to patient advocacy groups.",
+        "solution": "Developed multi-channel unbranded disease awareness campaign with patient community partnerships, diagnostic pathway education for specialists, and targeted digital outreach.",
         "results": ["340% increase in disease-related searches", "58% improvement in time-to-diagnosis", "Partnership with 4 patient advocacy organizations"],
-        "image_url": "https://images.unsplash.com/photo-1631651367550-a9bc35f6d200?w=800",
+        "image_url": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
         "tags": ["Rare Disease", "Patient Advocacy", "Awareness"]
     },
     {
@@ -145,9 +102,9 @@ CASE_STUDIES = [
         "client": "Precision Diagnostics Inc.",
         "industry": "Biotechnology",
         "challenge": "Transform traditional B2B marketing approach for a molecular diagnostics company entering the direct-to-consumer genetic testing market.",
-        "solution": "Built end-to-end digital marketing infrastructure including e-commerce platform, performance marketing campaigns, CRM implementation, and customer journey optimization across web and mobile.",
+        "solution": "Built end-to-end digital marketing infrastructure including e-commerce platform, performance marketing campaigns, CRM implementation, and customer journey optimization.",
         "results": ["$12M in DTC revenue within first year", "CAC reduced by 45% through optimization", "4.8 star average customer rating"],
-        "image_url": "https://images.unsplash.com/photo-1583912086268-cb0854235c9f?w=800",
+        "image_url": "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80",
         "tags": ["Diagnostics", "DTC", "Digital Marketing"]
     },
     {
@@ -156,9 +113,9 @@ CASE_STUDIES = [
         "client": "CardioVance Medical",
         "industry": "Medical Devices",
         "challenge": "Prepare market-shaping communications strategy ahead of FDA approval for novel heart valve replacement device, building anticipation while remaining compliant.",
-        "solution": "Executed pre-approval medical education strategy, clinical data dissemination through congresses, KOL engagement program, and launch-ready integrated campaign activated upon approval.",
+        "solution": "Executed pre-approval medical education strategy, clinical data dissemination through congresses, KOL engagement program, and launch-ready integrated campaign.",
         "results": ["98% target HCP awareness at launch", "First procedure within 48 hours of approval", "Category leadership within 18 months"],
-        "image_url": "https://images.unsplash.com/photo-1616996691748-3f5f78093ab0?w=800",
+        "image_url": "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80",
         "tags": ["Cardiovascular", "FDA Launch", "Medical Education"]
     }
 ]
@@ -167,11 +124,11 @@ BLOG_POSTS = [
     {
         "id": "1",
         "title": "Navigating FDA Guidelines for Digital Health Marketing in 2024",
-        "excerpt": "The regulatory landscape for digital health promotion continues to evolve. Here's what marketers need to know about recent FDA guidance updates and their implications for your digital strategy.",
-        "content": "Full article content here...",
+        "excerpt": "The regulatory landscape for digital health promotion continues to evolve. Here's what marketers need to know about recent FDA guidance updates.",
+        "content": "Full article content...",
         "author": "Dr. Rachel Morrison",
         "category": "Regulatory",
-        "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
+        "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
         "published_at": "2024-12-15",
         "read_time": "8 min read"
     },
@@ -179,10 +136,10 @@ BLOG_POSTS = [
         "id": "2",
         "title": "AI-Powered Personalization in Life Sciences Marketing",
         "excerpt": "How machine learning is transforming HCP engagement and enabling truly personalized omnichannel experiences in pharmaceutical marketing.",
-        "content": "Full article content here...",
+        "content": "Full article content...",
         "author": "Marcus Webb",
         "category": "Innovation",
-        "image_url": "https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=800",
+        "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
         "published_at": "2024-12-10",
         "read_time": "6 min read"
     },
@@ -190,10 +147,10 @@ BLOG_POSTS = [
         "id": "3",
         "title": "Building Authentic Patient Advocacy Partnerships",
         "excerpt": "Effective strategies for developing meaningful relationships with patient advocacy organizations that benefit both patients and your brand.",
-        "content": "Full article content here...",
+        "content": "Full article content...",
         "author": "Dr. Sarah Chen",
         "category": "Strategy",
-        "image_url": "https://images.unsplash.com/photo-1758518726775-70e538b0d46e?w=800",
+        "image_url": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80",
         "published_at": "2024-12-05",
         "read_time": "5 min read"
     },
@@ -201,10 +158,10 @@ BLOG_POSTS = [
         "id": "4",
         "title": "The Complete Guide to Biotech IPO Communications",
         "excerpt": "From S-1 filing to first earnings call: a comprehensive playbook for life sciences companies preparing to go public.",
-        "content": "Full article content here...",
+        "content": "Full article content...",
         "author": "James Mitchell",
         "category": "Strategy",
-        "image_url": "https://images.unsplash.com/photo-1760611656007-f767a8082758?w=800",
+        "image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
         "published_at": "2024-11-28",
         "read_time": "12 min read"
     },
@@ -212,10 +169,10 @@ BLOG_POSTS = [
         "id": "5",
         "title": "Medical Affairs & Marketing Alignment: Best Practices",
         "excerpt": "Breaking down silos between medical affairs and commercial teams to create more effective, compliant healthcare communications.",
-        "content": "Full article content here...",
+        "content": "Full article content...",
         "author": "Dr. Rachel Morrison",
         "category": "Regulatory",
-        "image_url": "https://images.unsplash.com/photo-1758518725921-1eb74ed293be?w=800",
+        "image_url": "https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&q=80",
         "published_at": "2024-11-20",
         "read_time": "7 min read"
     },
@@ -223,10 +180,10 @@ BLOG_POSTS = [
         "id": "6",
         "title": "Measuring ROI in Pharmaceutical Marketing",
         "excerpt": "Advanced analytics frameworks for demonstrating marketing impact in heavily regulated life sciences environments.",
-        "content": "Full article content here...",
+        "content": "Full article content...",
         "author": "Marcus Webb",
         "category": "Innovation",
-        "image_url": "https://images.unsplash.com/photo-1686061593213-98dad7c599b9?w=800",
+        "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
         "published_at": "2024-11-15",
         "read_time": "9 min read"
     }
@@ -238,136 +195,102 @@ TEAM_MEMBERS = [
         "name": "Dr. Alexandra Reid",
         "role": "Founder & CEO",
         "bio": "Former VP of Global Marketing at Pfizer with 20+ years in life sciences. Led launches for 8 blockbuster drugs. PhD in Molecular Biology from Stanford, MBA from Harvard Business School.",
-        "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400",
-        "linkedin": "https://linkedin.com/in/alexandra-reid"
+        "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     },
     {
         "id": "2",
         "name": "James Mitchell",
         "role": "Chief Strategy Officer",
         "bio": "Previously led healthcare practice at McKinsey & Company. Advised 50+ pharma and biotech companies on go-to-market strategy. MBA from Wharton, former Genentech executive.",
-        "image_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
-        "linkedin": "https://linkedin.com/in/james-mitchell"
+        "image_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     },
     {
         "id": "3",
         "name": "Dr. Sarah Chen",
         "role": "VP, Scientific Communications",
         "bio": "Board-certified oncologist turned medical communications expert. Published 40+ peer-reviewed papers. Former Medical Director at Memorial Sloan Kettering. MD from Johns Hopkins.",
-        "image_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
-        "linkedin": "https://linkedin.com/in/sarah-chen-md"
+        "image_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     },
     {
         "id": "4",
         "name": "Marcus Webb",
         "role": "Chief Digital Officer",
-        "bio": "Digital health pioneer with 15 years experience. Former Head of Digital at Publicis Health. Led award-winning campaigns for J&J, AstraZeneca, and Novartis. Expert in AI-driven marketing.",
-        "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-        "linkedin": "https://linkedin.com/in/marcus-webb"
+        "bio": "Digital health pioneer with 15 years experience. Former Head of Digital at Publicis Health. Led award-winning campaigns for J&J, AstraZeneca, and Novartis.",
+        "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     },
     {
         "id": "5",
         "name": "Dr. Rachel Morrison",
         "role": "VP, Regulatory Strategy",
         "bio": "Former FDA reviewer with 12 years at the agency. Expert in promotional review and digital health regulations. PharmD from UCSF, leads our medical-legal-regulatory practice.",
-        "image_url": "https://images.unsplash.com/photo-1758518729459-235dcaadc611?w=400",
-        "linkedin": "https://linkedin.com/in/rachel-morrison"
+        "image_url": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     },
     {
         "id": "6",
         "name": "David Park",
         "role": "Executive Creative Director",
         "bio": "Cannes Lions and Clio Award winner with 18 years in healthcare advertising. Former Global ECD at Havas Health. Known for breakthrough campaigns that simplify complex science.",
-        "image_url": "https://images.unsplash.com/photo-1769636929261-e913ed023c83?w=400",
-        "linkedin": "https://linkedin.com/in/david-park-creative"
+        "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+        "linkedin": "https://linkedin.com"
     }
-]
-
-CLIENT_LOGOS = [
-    {"id": "1", "name": "Meridian Therapeutics", "logo_url": ""},
-    {"id": "2", "name": "Helix Genomics", "logo_url": ""},
-    {"id": "3", "name": "Apex Surgical", "logo_url": ""},
-    {"id": "4", "name": "Orion Rare Disease", "logo_url": ""},
-    {"id": "5", "name": "CardioVance", "logo_url": ""},
-    {"id": "6", "name": "Precision Dx", "logo_url": ""}
 ]
 
 # Routes
 @api_router.get("/")
 async def root():
-    return {"message": "BioLumina Agency API"}
+    return {"message": "Motionfy Agency API"}
 
-@api_router.post("/contact", response_model=ContactSubmission)
+@api_router.post("/contact")
 async def submit_contact(input: ContactSubmissionCreate):
-    submission_dict = input.model_dump()
-    submission_obj = ContactSubmission(**submission_dict)
-    
+    submission_obj = ContactSubmission(**input.model_dump())
     doc = submission_obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
-    
     await db.contact_submissions.insert_one(doc)
-    return submission_obj
+    return {"success": True, "message": "Thank you! We'll be in touch soon."}
 
-@api_router.get("/contact", response_model=List[ContactSubmission])
-async def get_contact_submissions():
-    submissions = await db.contact_submissions.find({}, {"_id": 0}).to_list(1000)
-    for sub in submissions:
-        if isinstance(sub['created_at'], str):
-            sub['created_at'] = datetime.fromisoformat(sub['created_at'])
-    return submissions
-
-@api_router.post("/newsletter", response_model=NewsletterSubscription)
+@api_router.post("/newsletter")
 async def subscribe_newsletter(input: NewsletterSubscriptionCreate):
     existing = await db.newsletter_subscriptions.find_one({"email": input.email}, {"_id": 0})
-    if existing:
-        if existing.get('is_active'):
-            raise HTTPException(status_code=400, detail="Email already subscribed")
-        else:
-            await db.newsletter_subscriptions.update_one(
-                {"email": input.email},
-                {"$set": {"is_active": True, "subscribed_at": datetime.now(timezone.utc).isoformat()}}
-            )
-            existing['is_active'] = True
-            return existing
+    if existing and existing.get('is_active'):
+        raise HTTPException(status_code=400, detail="Email already subscribed")
     
     subscription_obj = NewsletterSubscription(email=input.email)
     doc = subscription_obj.model_dump()
     doc['subscribed_at'] = doc['subscribed_at'].isoformat()
-    
     await db.newsletter_subscriptions.insert_one(doc)
-    return subscription_obj
+    return {"success": True, "message": "Successfully subscribed!"}
 
-@api_router.get("/case-studies", response_model=List[CaseStudy])
+@api_router.get("/case-studies")
 async def get_case_studies():
     return CASE_STUDIES
 
-@api_router.get("/case-studies/{case_study_id}", response_model=CaseStudy)
+@api_router.get("/case-studies/{case_study_id}")
 async def get_case_study(case_study_id: str):
     for cs in CASE_STUDIES:
         if cs["id"] == case_study_id:
             return cs
     raise HTTPException(status_code=404, detail="Case study not found")
 
-@api_router.get("/blog", response_model=List[BlogPost])
+@api_router.get("/blog")
 async def get_blog_posts():
     return BLOG_POSTS
 
-@api_router.get("/blog/{post_id}", response_model=BlogPost)
+@api_router.get("/blog/{post_id}")
 async def get_blog_post(post_id: str):
     for post in BLOG_POSTS:
         if post["id"] == post_id:
             return post
     raise HTTPException(status_code=404, detail="Blog post not found")
 
-@api_router.get("/team", response_model=List[TeamMember])
+@api_router.get("/team")
 async def get_team_members():
     return TEAM_MEMBERS
 
-@api_router.get("/clients", response_model=List[ClientLogo])
-async def get_client_logos():
-    return CLIENT_LOGOS
-
-# Include the router in the main app
 app.include_router(api_router)
 
 app.add_middleware(
@@ -378,11 +301,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
