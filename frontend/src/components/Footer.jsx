@@ -1,50 +1,28 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-// DNA Double Helix M Logo Component
+// Molecule M Logo - Bold & Iconic
 const MotionfyLogo = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Left helix strand */}
     <path 
-      d="M8 32 C8 28, 12 26, 12 22 C12 18, 8 16, 8 12 C8 10, 10 8, 12 8"
-      stroke="url(#footerHelixGradient1)" 
-      strokeWidth="2.5" 
-      strokeLinecap="round"
-      fill="none"
-    />
-    {/* Right helix strand */}
-    <path 
-      d="M32 32 C32 28, 28 26, 28 22 C28 18, 32 16, 32 12 C32 10, 30 8, 28 8"
-      stroke="url(#footerHelixGradient1)" 
-      strokeWidth="2.5" 
-      strokeLinecap="round"
-      fill="none"
-    />
-    {/* Center connecting helix */}
-    <path 
-      d="M12 8 C14 12, 18 18, 20 22 C22 18, 26 12, 28 8"
-      stroke="url(#footerHelixGradient2)" 
-      strokeWidth="2.5" 
+      d="M8 30L8 10L20 22L32 10L32 30"
+      stroke="url(#footerMoleculeGrad)" 
+      strokeWidth="3" 
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
     />
-    {/* DNA base pair connectors */}
-    <line x1="10" y1="12" x2="14" y2="14" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    <line x1="10" y1="20" x2="15" y2="20" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
-    <line x1="10" y1="28" x2="14" y2="26" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    <line x1="30" y1="12" x2="26" y2="14" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    <line x1="30" y1="20" x2="25" y2="20" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
-    <line x1="30" y1="28" x2="26" y2="26" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <circle cx="8" cy="10" r="3.5" fill="hsl(172, 66%, 50%)"/>
+    <circle cx="20" cy="22" r="4" fill="hsl(174, 100%, 45%)"/>
+    <circle cx="32" cy="10" r="3.5" fill="hsl(172, 66%, 50%)"/>
+    <circle cx="8" cy="30" r="2.5" fill="hsl(172, 66%, 40%)" opacity="0.8"/>
+    <circle cx="32" cy="30" r="2.5" fill="hsl(172, 66%, 40%)" opacity="0.8"/>
+    <circle cx="20" cy="22" r="6" fill="hsl(174, 100%, 45%)" opacity="0.2"/>
     <defs>
-      <linearGradient id="footerHelixGradient1" x1="8" y1="8" x2="8" y2="32" gradientUnits="userSpaceOnUse">
-        <stop stopColor="hsl(172, 66%, 50%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 41%)" />
-      </linearGradient>
-      <linearGradient id="footerHelixGradient2" x1="12" y1="8" x2="28" y2="22" gradientUnits="userSpaceOnUse">
-        <stop stopColor="hsl(172, 66%, 60%)" />
-        <stop offset="0.5" stopColor="hsl(180, 80%, 45%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 41%)" />
+      <linearGradient id="footerMoleculeGrad" x1="8" y1="10" x2="32" y2="30">
+        <stop stopColor="hsl(172, 66%, 55%)" />
+        <stop offset="0.5" stopColor="hsl(175, 80%, 50%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 45%)" />
       </linearGradient>
     </defs>
   </svg>
