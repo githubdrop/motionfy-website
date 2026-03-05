@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-// Bold DNA M - Clean intertwined double helix M
+// Sleek Biotech M - Modern minimal with subtle science touch
 const MotionfyLogo = () => (
-  <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 2 L2 28 M2 2 L12 16 L20 28 M38 2 L28 16 L20 28 M38 2 L38 28" stroke="hsl(172, 66%, 55%)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M2 8 Q5 8, 5 12 Q5 16, 2 16 Q5 16, 5 20 Q5 24, 2 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
-    <path d="M38 8 Q35 8, 35 12 Q35 16, 38 16 Q35 16, 35 20 Q35 24, 38 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
-    <path d="M12 16 Q20 12, 28 16" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.6"/>
-    <path d="M16 22 Q20 18, 24 22" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5"/>
-    <circle cx="2" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
-    <circle cx="38" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
-    <circle cx="20" cy="28" r="3" fill="hsl(174, 100%, 50%)"/>
+  <svg width="36" height="32" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 28V4L18 18L33 4V28" stroke="url(#footerSleekGrad)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M14 14L18 11L22 14L22 19L18 22L14 19Z" stroke="hsl(174, 100%, 50%)" strokeWidth="1.5" fill="none" opacity="0.6"/>
+    <circle cx="18" cy="16.5" r="2" fill="hsl(174, 100%, 50%)"/>
+    <defs>
+      <linearGradient id="footerSleekGrad" x1="3" y1="4" x2="33" y2="28">
+        <stop stopColor="hsl(172, 66%, 55%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 50%)" />
+      </linearGradient>
+    </defs>
   </svg>
 );
 

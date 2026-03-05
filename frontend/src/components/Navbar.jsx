@@ -4,30 +4,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 
-// Bold DNA M - Clean intertwined double helix M
+// Sleek Biotech M - Modern minimal with subtle science touch
 const MotionfyLogo = () => (
-  <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* The M is formed by two DNA strands that twist around each other */}
-    {/* Strand 1 - goes left-down, twist, center-down */}
+  <svg width="36" height="32" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Clean bold M */}
     <path 
-      d="M2 2 L2 28 M2 2 L12 16 L20 28 M38 2 L28 16 L20 28 M38 2 L38 28"
-      stroke="hsl(172, 66%, 55%)" 
-      strokeWidth="3.5" 
+      d="M3 28V4L18 18L33 4V28" 
+      stroke="url(#sleekGrad)" 
+      strokeWidth="4" 
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
     />
-    {/* Helix twist overlay on left vertical */}
-    <path d="M2 8 Q5 8, 5 12 Q5 16, 2 16 Q5 16, 5 20 Q5 24, 2 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
-    {/* Helix twist overlay on right vertical */}
-    <path d="M38 8 Q35 8, 35 12 Q35 16, 38 16 Q35 16, 35 20 Q35 24, 38 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
-    {/* Center helix crossing */}
-    <path d="M12 16 Q20 12, 28 16" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.6"/>
-    <path d="M16 22 Q20 18, 24 22" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5"/>
-    {/* Molecular accent dots */}
-    <circle cx="2" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
-    <circle cx="38" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
-    <circle cx="20" cy="28" r="3" fill="hsl(174, 100%, 50%)"/>
+    {/* Subtle hexagon (benzene ring) in center - science hint */}
+    <path 
+      d="M14 14L18 11L22 14L22 19L18 22L14 19Z" 
+      stroke="hsl(174, 100%, 50%)" 
+      strokeWidth="1.5"
+      fill="none"
+      opacity="0.6"
+    />
+    {/* Center dot */}
+    <circle cx="18" cy="16.5" r="2" fill="hsl(174, 100%, 50%)"/>
+    
+    <defs>
+      <linearGradient id="sleekGrad" x1="3" y1="4" x2="33" y2="28">
+        <stop stopColor="hsl(172, 66%, 55%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 50%)" />
+      </linearGradient>
+    </defs>
   </svg>
 );
 
