@@ -1,28 +1,27 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-// Molecule M Logo - Bold & Iconic
+// DNA + Signal Wave Logo - Science Amplified
 const MotionfyLogo = () => (
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path 
-      d="M8 30L8 10L20 22L32 10L32 30"
-      stroke="url(#footerMoleculeGrad)" 
-      strokeWidth="3" 
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-    <circle cx="8" cy="10" r="3.5" fill="hsl(172, 66%, 50%)"/>
-    <circle cx="20" cy="22" r="4" fill="hsl(174, 100%, 45%)"/>
-    <circle cx="32" cy="10" r="3.5" fill="hsl(172, 66%, 50%)"/>
-    <circle cx="8" cy="30" r="2.5" fill="hsl(172, 66%, 40%)" opacity="0.8"/>
-    <circle cx="32" cy="30" r="2.5" fill="hsl(172, 66%, 40%)" opacity="0.8"/>
-    <circle cx="20" cy="22" r="6" fill="hsl(174, 100%, 45%)" opacity="0.2"/>
+  <svg width="44" height="36" viewBox="0 0 44 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 6C8 6, 8 12, 4 12C8 12, 8 18, 4 18" stroke="hsl(172, 66%, 50%)" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M10 6C6 6, 6 12, 10 12C6 12, 6 18, 10 18" stroke="hsl(174, 100%, 45%)" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <line x1="4" y1="9" x2="10" y2="9" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <line x1="4" y1="15" x2="10" y2="15" stroke="hsl(174, 100%, 45%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <circle cx="14" cy="18" r="3" fill="hsl(173, 80%, 48%)"/>
+    <circle cx="14" cy="18" r="5" fill="hsl(173, 80%, 48%)" opacity="0.25"/>
+    <path d="M20 18C20 14, 24 14, 24 18C24 22, 28 22, 28 18" stroke="url(#footerWaveGrad1)" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+    <path d="M30 18C30 12, 36 12, 36 18C36 24, 42 24, 42 18" stroke="url(#footerWaveGrad2)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+    <circle cx="24" cy="18" r="1.5" fill="hsl(174, 100%, 45%)" opacity="0.8"/>
+    <circle cx="36" cy="18" r="1.5" fill="hsl(174, 100%, 45%)" opacity="0.5"/>
     <defs>
-      <linearGradient id="footerMoleculeGrad" x1="8" y1="10" x2="32" y2="30">
+      <linearGradient id="footerWaveGrad1" x1="20" y1="18" x2="28" y2="18">
         <stop stopColor="hsl(172, 66%, 55%)" />
-        <stop offset="0.5" stopColor="hsl(175, 80%, 50%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 45%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 50%)" />
+      </linearGradient>
+      <linearGradient id="footerWaveGrad2" x1="30" y1="18" x2="42" y2="18">
+        <stop stopColor="hsl(174, 100%, 50%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 45%)" stopOpacity="0.5" />
       </linearGradient>
     </defs>
   </svg>
