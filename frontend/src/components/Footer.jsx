@@ -1,32 +1,17 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-// DNA M Logo - M shaped with DNA helix elements
+// Bold DNA M - Clean intertwined double helix M
 const MotionfyLogo = () => (
-  <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 30V6" stroke="url(#footerDnaGrad)" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M3 10C6 10, 9 10, 9 10M3 18C6 18, 9 18, 9 18M3 26C6 26, 9 26, 9 26" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-    <path d="M6 6C10 14, 17 22, 21 28" stroke="url(#footerDnaGrad)" strokeWidth="3" strokeLinecap="round" fill="none"/>
-    <path d="M36 6C32 14, 25 22, 21 28" stroke="url(#footerDnaGrad2)" strokeWidth="3" strokeLinecap="round" fill="none"/>
-    <line x1="10" y1="12" x2="32" y2="12" stroke="hsl(173, 80%, 48%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
-    <line x1="14" y1="18" x2="28" y2="18" stroke="hsl(174, 100%, 45%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-    <line x1="18" y1="24" x2="24" y2="24" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    <path d="M36 30V6" stroke="url(#footerDnaGrad2)" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M33 10C36 10, 39 10, 39 10M33 18C36 18, 39 18, 39 18M33 26C36 26, 39 26, 39 26" stroke="hsl(174, 100%, 45%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
-    <circle cx="6" cy="6" r="2.5" fill="hsl(172, 66%, 55%)"/>
-    <circle cx="36" cy="6" r="2.5" fill="hsl(174, 100%, 50%)"/>
-    <circle cx="21" cy="28" r="3" fill="hsl(173, 80%, 50%)"/>
-    <circle cx="21" cy="28" r="5" fill="hsl(173, 80%, 50%)" opacity="0.2"/>
-    <defs>
-      <linearGradient id="footerDnaGrad" x1="6" y1="6" x2="21" y2="28">
-        <stop stopColor="hsl(172, 66%, 55%)" />
-        <stop offset="1" stopColor="hsl(173, 80%, 50%)" />
-      </linearGradient>
-      <linearGradient id="footerDnaGrad2" x1="36" y1="6" x2="21" y2="28">
-        <stop stopColor="hsl(174, 100%, 50%)" />
-        <stop offset="1" stopColor="hsl(173, 80%, 50%)" />
-      </linearGradient>
-    </defs>
+  <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L2 28 M2 2 L12 16 L20 28 M38 2 L28 16 L20 28 M38 2 L38 28" stroke="hsl(172, 66%, 55%)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M2 8 Q5 8, 5 12 Q5 16, 2 16 Q5 16, 5 20 Q5 24, 2 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
+    <path d="M38 8 Q35 8, 35 12 Q35 16, 38 16 Q35 16, 35 20 Q35 24, 38 24" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.8"/>
+    <path d="M12 16 Q20 12, 28 16" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.6"/>
+    <path d="M16 22 Q20 18, 24 22" stroke="hsl(174, 100%, 50%)" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.5"/>
+    <circle cx="2" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
+    <circle cx="38" cy="2" r="2.5" fill="hsl(172, 66%, 60%)"/>
+    <circle cx="20" cy="28" r="3" fill="hsl(174, 100%, 50%)"/>
   </svg>
 );
 
