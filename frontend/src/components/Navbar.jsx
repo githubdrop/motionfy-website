@@ -4,43 +4,50 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 
-// Minimalist M Monogram Logo Component
+// DNA Double Helix M Logo Component
 const MotionfyLogo = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Background circle with subtle gradient */}
-    <circle cx="18" cy="18" r="18" fill="url(#logoGradientBg)" />
-    {/* Stylized M with motion lines */}
+  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Left helix strand - forms left side of M */}
     <path 
-      d="M10 24V12L18 20L26 12V24" 
-      stroke="url(#logoGradient)" 
+      d="M8 32 C8 28, 12 26, 12 22 C12 18, 8 16, 8 12 C8 10, 10 8, 12 8"
+      stroke="url(#helixGradient1)" 
       strokeWidth="2.5" 
-      strokeLinecap="round" 
+      strokeLinecap="round"
+      fill="none"
+    />
+    {/* Right helix strand - forms right side of M */}
+    <path 
+      d="M32 32 C32 28, 28 26, 28 22 C28 18, 32 16, 32 12 C32 10, 30 8, 28 8"
+      stroke="url(#helixGradient1)" 
+      strokeWidth="2.5" 
+      strokeLinecap="round"
+      fill="none"
+    />
+    {/* Center connecting helix - forms middle V of M */}
+    <path 
+      d="M12 8 C14 12, 18 18, 20 22 C22 18, 26 12, 28 8"
+      stroke="url(#helixGradient2)" 
+      strokeWidth="2.5" 
+      strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
     />
-    {/* Motion accent lines */}
-    <path 
-      d="M7 16H9" 
-      stroke="hsl(172, 66%, 50%)" 
-      strokeWidth="1.5" 
-      strokeLinecap="round"
-      opacity="0.7"
-    />
-    <path 
-      d="M7 20H10" 
-      stroke="hsl(172, 66%, 50%)" 
-      strokeWidth="1.5" 
-      strokeLinecap="round"
-      opacity="0.5"
-    />
+    {/* DNA base pair connectors */}
+    <line x1="10" y1="12" x2="14" y2="14" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <line x1="10" y1="20" x2="15" y2="20" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
+    <line x1="10" y1="28" x2="14" y2="26" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <line x1="30" y1="12" x2="26" y2="14" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    <line x1="30" y1="20" x2="25" y2="20" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.8"/>
+    <line x1="30" y1="28" x2="26" y2="26" stroke="hsl(174, 100%, 41%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
     <defs>
-      <linearGradient id="logoGradient" x1="10" y1="12" x2="26" y2="24" gradientUnits="userSpaceOnUse">
+      <linearGradient id="helixGradient1" x1="8" y1="8" x2="8" y2="32" gradientUnits="userSpaceOnUse">
         <stop stopColor="hsl(172, 66%, 50%)" />
         <stop offset="1" stopColor="hsl(174, 100%, 41%)" />
       </linearGradient>
-      <linearGradient id="logoGradientBg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-        <stop stopColor="hsl(217, 33%, 12%)" />
-        <stop offset="1" stopColor="hsl(222, 47%, 7%)" />
+      <linearGradient id="helixGradient2" x1="12" y1="8" x2="28" y2="22" gradientUnits="userSpaceOnUse">
+        <stop stopColor="hsl(172, 66%, 60%)" />
+        <stop offset="0.5" stopColor="hsl(180, 80%, 45%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 41%)" />
       </linearGradient>
     </defs>
   </svg>
