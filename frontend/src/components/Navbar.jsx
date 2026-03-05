@@ -4,61 +4,76 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 
-// DNA + Signal Wave Logo - Science Amplified
+// DNA M Logo - M shaped with DNA helix elements
 const MotionfyLogo = () => (
-  <svg width="44" height="36" viewBox="0 0 44 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* DNA Helix left side */}
+  <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Left vertical stroke of M - DNA helix style */}
     <path 
-      d="M4 6C8 6, 8 12, 4 12C8 12, 8 18, 4 18"
+      d="M6 30V6"
+      stroke="url(#dnaGrad)" 
+      strokeWidth="3" 
+      strokeLinecap="round"
+    />
+    {/* Left helix twist */}
+    <path 
+      d="M3 10C6 10, 9 10, 9 10M3 18C6 18, 9 18, 9 18M3 26C6 26, 9 26, 9 26"
       stroke="hsl(172, 66%, 50%)" 
-      strokeWidth="2.5" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      opacity="0.5"
+    />
+    
+    {/* Center V of M - double helix intertwining */}
+    <path 
+      d="M6 6C10 14, 17 22, 21 28"
+      stroke="url(#dnaGrad)" 
+      strokeWidth="3" 
       strokeLinecap="round"
       fill="none"
     />
     <path 
-      d="M10 6C6 6, 6 12, 10 12C6 12, 6 18, 10 18"
+      d="M36 6C32 14, 25 22, 21 28"
+      stroke="url(#dnaGrad2)" 
+      strokeWidth="3" 
+      strokeLinecap="round"
+      fill="none"
+    />
+    
+    {/* DNA base pair connectors on the V */}
+    <line x1="10" y1="12" x2="32" y2="12" stroke="hsl(173, 80%, 48%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"/>
+    <line x1="14" y1="18" x2="28" y2="18" stroke="hsl(174, 100%, 45%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.5"/>
+    <line x1="18" y1="24" x2="24" y2="24" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+    
+    {/* Right vertical stroke of M - DNA helix style */}
+    <path 
+      d="M36 30V6"
+      stroke="url(#dnaGrad2)" 
+      strokeWidth="3" 
+      strokeLinecap="round"
+    />
+    {/* Right helix twist */}
+    <path 
+      d="M33 10C36 10, 39 10, 39 10M33 18C36 18, 39 18, 39 18M33 26C36 26, 39 26, 39 26"
       stroke="hsl(174, 100%, 45%)" 
-      strokeWidth="2.5" 
+      strokeWidth="1.5" 
       strokeLinecap="round"
-      fill="none"
-    />
-    {/* DNA base pairs */}
-    <line x1="4" y1="9" x2="10" y2="9" stroke="hsl(172, 66%, 50%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    <line x1="4" y1="15" x2="10" y2="15" stroke="hsl(174, 100%, 45%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
-    
-    {/* Transition point - glowing node */}
-    <circle cx="14" cy="18" r="3" fill="hsl(173, 80%, 48%)"/>
-    <circle cx="14" cy="18" r="5" fill="hsl(173, 80%, 48%)" opacity="0.25"/>
-    
-    {/* Signal waves emanating outward */}
-    <path 
-      d="M20 18C20 14, 24 14, 24 18C24 22, 28 22, 28 18"
-      stroke="url(#waveGrad1)" 
-      strokeWidth="2.5" 
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path 
-      d="M30 18C30 12, 36 12, 36 18C36 24, 42 24, 42 18"
-      stroke="url(#waveGrad2)" 
-      strokeWidth="2" 
-      strokeLinecap="round"
-      fill="none"
-      opacity="0.7"
+      opacity="0.5"
     />
     
-    {/* Small signal dots */}
-    <circle cx="24" cy="18" r="1.5" fill="hsl(174, 100%, 45%)" opacity="0.8"/>
-    <circle cx="36" cy="18" r="1.5" fill="hsl(174, 100%, 45%)" opacity="0.5"/>
+    {/* Molecular nodes at key points */}
+    <circle cx="6" cy="6" r="2.5" fill="hsl(172, 66%, 55%)"/>
+    <circle cx="36" cy="6" r="2.5" fill="hsl(174, 100%, 50%)"/>
+    <circle cx="21" cy="28" r="3" fill="hsl(173, 80%, 50%)"/>
+    <circle cx="21" cy="28" r="5" fill="hsl(173, 80%, 50%)" opacity="0.2"/>
     
     <defs>
-      <linearGradient id="waveGrad1" x1="20" y1="18" x2="28" y2="18">
+      <linearGradient id="dnaGrad" x1="6" y1="6" x2="21" y2="28">
         <stop stopColor="hsl(172, 66%, 55%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 50%)" />
+        <stop offset="1" stopColor="hsl(173, 80%, 50%)" />
       </linearGradient>
-      <linearGradient id="waveGrad2" x1="30" y1="18" x2="42" y2="18">
+      <linearGradient id="dnaGrad2" x1="36" y1="6" x2="21" y2="28">
         <stop stopColor="hsl(174, 100%, 50%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 45%)" stopOpacity="0.5" />
+        <stop offset="1" stopColor="hsl(173, 80%, 50%)" />
       </linearGradient>
     </defs>
   </svg>
