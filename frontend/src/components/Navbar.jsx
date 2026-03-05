@@ -1,8 +1,50 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+
+// Minimalist M Monogram Logo Component
+const MotionfyLogo = () => (
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Background circle with subtle gradient */}
+    <circle cx="18" cy="18" r="18" fill="url(#logoGradientBg)" />
+    {/* Stylized M with motion lines */}
+    <path 
+      d="M10 24V12L18 20L26 12V24" 
+      stroke="url(#logoGradient)" 
+      strokeWidth="2.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+      fill="none"
+    />
+    {/* Motion accent lines */}
+    <path 
+      d="M7 16H9" 
+      stroke="hsl(172, 66%, 50%)" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      opacity="0.7"
+    />
+    <path 
+      d="M7 20H10" 
+      stroke="hsl(172, 66%, 50%)" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      opacity="0.5"
+    />
+    <defs>
+      <linearGradient id="logoGradient" x1="10" y1="12" x2="26" y2="24" gradientUnits="userSpaceOnUse">
+        <stop stopColor="hsl(172, 66%, 50%)" />
+        <stop offset="1" stopColor="hsl(174, 100%, 41%)" />
+      </linearGradient>
+      <linearGradient id="logoGradientBg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+        <stop stopColor="hsl(217, 33%, 12%)" />
+        <stop offset="1" stopColor="hsl(222, 47%, 7%)" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -40,14 +82,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group" data-testid="navbar-logo">
             <motion.div 
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.5 }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              <Sparkles className="w-5 h-5 text-background" />
+              <MotionfyLogo />
             </motion.div>
-            <span className="font-heading font-bold text-xl text-foreground tracking-tight">
-              Motionfy
+            <span className="font-heading font-semibold text-xl tracking-tight">
+              <span className="text-foreground">Motion</span>
+              <span className="text-primary">fy</span>
             </span>
           </Link>
 
