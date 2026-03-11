@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { MapPin, Mail, Clock, Send, CheckCircle, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
@@ -17,7 +17,6 @@ const services = ["Brand Strategy", "Digital Marketing", "Scientific Communicati
 
 const contactInfo = [
   { icon: MapPin, title: "Visit Us", details: ["17595 Harvard Ave", "Ste C-831, Irvine, CA 92614"] },
-  { icon: Phone, title: "Call Us", details: ["+1 (949) 555-0123"] },
   { icon: Mail, title: "Email Us", details: ["hello@motionfy.com"] },
   { icon: Clock, title: "Office Hours", details: ["Mon-Fri 9am-6pm PST"] }
 ];
