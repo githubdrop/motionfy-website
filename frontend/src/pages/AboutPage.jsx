@@ -17,12 +17,12 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2015", event: "Founded in Boston" },
-  { year: "2017", event: "First blockbuster launch" },
-  { year: "2019", event: "European expansion" },
-  { year: "2021", event: "100 client milestone" },
-  { year: "2023", event: "Best Healthcare Agency" },
-  { year: "2024", event: "AI insights platform" }
+  { year: "2015", event: "Founded in California" },
+  { year: "2017", event: "First major client launch" },
+  { year: "2019", event: "Expanded service offerings" },
+  { year: "2021", event: "50+ client milestone" },
+  { year: "2023", event: "Industry recognition award" },
+  { year: "2024", event: "AI-powered marketing tools" }
 ];
 
 export default function AboutPage() {
@@ -61,9 +61,9 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h2 className="font-heading text-4xl font-bold text-foreground mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>Founded by Dr. Alexandra Reid, former VP of Global Marketing at Pfizer, Motionfy was built on a simple premise: life sciences companies deserve marketing partners who understand both the science and the business.</p>
-                <p>After leading eight blockbuster drug launches, Alexandra assembled a team of scientists-turned-marketers, former FDA reviewers, and award-winning creatives who shared her vision.</p>
-                <p>Today, we serve 150+ clients across 12 global markets. Our team of 85+ specialists has contributed to therapies helping millions of patients worldwide.</p>
+                <p>Founded in 2015 in California, Motionfy was built on a simple premise: life sciences companies deserve marketing partners who understand both the science and the business.</p>
+                <p>Our team of specialists, strategists, and creatives share a common vision—to help innovative healthcare companies connect with their audiences in meaningful ways.</p>
+                <p>Today, we serve clients across the US, helping them achieve excellence and sustained growth. Our dedicated team is committed to delivering personalized marketing solutions that drive real results.</p>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
@@ -173,10 +173,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { icon: Users, value: "85+", label: "Team Members" },
-              { icon: Award, value: "25", label: "Industry Awards" },
-              { icon: Target, value: "150+", label: "Clients Served" },
-              { icon: Lightbulb, value: "500+", label: "Campaigns" }
+              { icon: Users, value: "20+", label: "Team Members" },
+              { icon: Award, value: "10+", label: "Years Experience" },
+              { icon: Target, value: "50+", label: "Clients Served" },
+              { icon: Lightbulb, value: "200+", label: "Campaigns" }
             ].map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <s.icon className="w-8 h-8 text-primary mx-auto mb-3" />

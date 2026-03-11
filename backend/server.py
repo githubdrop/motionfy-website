@@ -192,50 +192,50 @@ BLOG_POSTS = [
 TEAM_MEMBERS = [
     {
         "id": "1",
-        "name": "Dr. Alexandra Reid",
-        "role": "Founder & CEO",
-        "bio": "Former VP of Global Marketing at Pfizer with 20+ years in life sciences. Led launches for 8 blockbuster drugs. PhD in Molecular Biology from Stanford, MBA from Harvard Business School.",
-        "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+        "name": "Andrew",
+        "role": "SEO Specialist",
+        "bio": "Expert in search engine optimization with deep knowledge of healthcare and life sciences SEO. Drives organic growth and visibility for our clients' digital presence.",
+        "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
         "id": "2",
-        "name": "James Mitchell",
-        "role": "Chief Strategy Officer",
-        "bio": "Previously led healthcare practice at McKinsey & Company. Advised 50+ pharma and biotech companies on go-to-market strategy. MBA from Wharton, former Genentech executive.",
+        "name": "Matt",
+        "role": "Account Manager",
+        "bio": "Dedicated client partner ensuring seamless communication and project delivery. Brings strategic insight and a client-first approach to every engagement.",
         "image_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
         "id": "3",
-        "name": "Dr. Sarah Chen",
-        "role": "VP, Scientific Communications",
-        "bio": "Board-certified oncologist turned medical communications expert. Published 40+ peer-reviewed papers. Former Medical Director at Memorial Sloan Kettering. MD from Johns Hopkins.",
-        "image_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+        "name": "Jing",
+        "role": "Project Manager",
+        "bio": "Keeps complex marketing campaigns on track and on budget. Expert at coordinating cross-functional teams to deliver exceptional results.",
+        "image_url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
         "id": "4",
-        "name": "Marcus Webb",
-        "role": "Chief Digital Officer",
-        "bio": "Digital health pioneer with 15 years experience. Former Head of Digital at Publicis Health. Led award-winning campaigns for J&J, AstraZeneca, and Novartis.",
-        "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+        "name": "Afsaneh",
+        "role": "Paid Ads Specialist",
+        "bio": "Masters paid media strategy across Google, Meta, and LinkedIn. Optimizes campaigns for maximum ROI in competitive healthcare markets.",
+        "image_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
         "id": "5",
-        "name": "Dr. Rachel Morrison",
-        "role": "VP, Regulatory Strategy",
-        "bio": "Former FDA reviewer with 12 years at the agency. Expert in promotional review and digital health regulations. PharmD from UCSF, leads our medical-legal-regulatory practice.",
-        "image_url": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80",
+        "name": "Danny",
+        "role": "Social Media Manager",
+        "bio": "Creates engaging social content that resonates with healthcare audiences. Builds authentic brand presence across all major platforms.",
+        "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
         "id": "6",
-        "name": "David Park",
-        "role": "Executive Creative Director",
-        "bio": "Cannes Lions and Clio Award winner with 18 years in healthcare advertising. Former Global ECD at Havas Health. Known for breakthrough campaigns that simplify complex science.",
-        "image_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+        "name": "Nina",
+        "role": "Brand Strategist",
+        "bio": "Develops compelling brand narratives that differentiate our clients in crowded markets. Expert in positioning and messaging strategy.",
+        "image_url": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80",
         "linkedin": "https://linkedin.com"
     }
 ]

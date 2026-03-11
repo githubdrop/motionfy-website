@@ -16,10 +16,10 @@ const API = `${BACKEND_URL}/api`;
 const services = ["Brand Strategy", "Digital Marketing", "Scientific Communications", "Regulatory Marketing", "Market Research", "Investor Relations", "Other"];
 
 const contactInfo = [
-  { icon: MapPin, title: "Visit Us", details: ["100 Innovation Drive", "Boston, MA 02110"] },
-  { icon: Phone, title: "Call Us", details: ["+1 (617) 555-0123"] },
+  { icon: MapPin, title: "Visit Us", details: ["17595 Harvard Ave", "Ste C-831, Irvine, CA 92614"] },
+  { icon: Phone, title: "Call Us", details: ["+1 (949) 555-0123"] },
   { icon: Mail, title: "Email Us", details: ["hello@motionfy.com"] },
-  { icon: Clock, title: "Office Hours", details: ["Mon-Fri 9am-6pm EST"] }
+  { icon: Clock, title: "Office Hours", details: ["Mon-Fri 9am-6pm PST"] }
 ];
 
 export default function ContactPage() {
@@ -131,10 +131,10 @@ export default function ContactPage() {
 
       {/* Map */}
       <section className="h-[400px] relative">
-        <div className="absolute inset-0"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.665671696991!2d-71.05421548453437!3d42.35460407918561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3709e9b53df4d%3A0x6b5b8c6e55e6c3a8!2sBoston%2C%20MA%2002110!5e0!3m2!1sen!2sus!4v1645556789012!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} allowFullScreen="" loading="lazy" title="Office Location" /></div>
+        <div className="absolute inset-0"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.7847687896!2d-117.8443!3d33.6846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcdfa1f4cf25e1%3A0x5b7c2a2e72e2d88b!2sIrvine%2C%20CA%2092614!5e0!3m2!1sen!2sus!4v1645556789012!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} allowFullScreen="" loading="lazy" title="Office Location" /></div>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="absolute top-8 left-8 glass-heavy rounded-2xl p-6 max-w-xs">
           <h3 className="font-heading font-semibold text-foreground mb-2">Motionfy HQ</h3>
-          <p className="text-muted-foreground text-sm">100 Innovation Drive<br />Boston, MA 02110</p>
+          <p className="text-muted-foreground text-sm">17595 Harvard Ave, Ste C-831<br />Irvine, CA 92614</p>
         </motion.div>
       </section>
     </div>

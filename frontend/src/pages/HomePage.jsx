@@ -17,9 +17,9 @@ const services = [
 ];
 
 const stats = [
-  { value: "150+", label: "Clients", suffix: "" },
+  { value: "50+", label: "Clients", suffix: "" },
   { value: "98", label: "Retention", suffix: "%" },
-  { value: "$2.4", label: "Revenue Generated", suffix: "B" },
+  { value: "10+", label: "Years Experience", suffix: "" },
   { value: "12", label: "Markets", suffix: "" }
 ];
 
@@ -127,8 +127,8 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-foreground">Trusted by 150+ companies</p>
-                  <p className="text-xs text-muted-foreground">$2.4B+ in client revenue generated</p>
+                  <p className="text-sm font-medium text-foreground">Trusted by 50+ companies</p>
+                  <p className="text-xs text-muted-foreground">Personalized marketing solutions</p>
                 </div>
               </motion.div>
             </motion.div>

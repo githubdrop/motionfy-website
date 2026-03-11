@@ -99,7 +99,7 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2 text-muted-foreground text-sm">
             <MapPin className="w-4 h-4" />
-            <span>Boston • London</span>
+            <span>Irvine, California</span>
           </div>
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Motionfy. All rights reserved.
