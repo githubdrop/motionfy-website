@@ -4,11 +4,13 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import asyncio
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+import resend
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -17,8 +19,15 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
+# Resend setup
+resend.api_key = os.environ.get('RESEND_API_KEY')
+NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', 'wesparcmedia@gmail.com')
+
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 # Models
 class ContactSubmission(BaseModel):
@@ -245,12 +254,51 @@ TEAM_MEMBERS = [
 async def root():
     return {"message": "Motionfy Agency API"}
 
+async def send_notification_email(submission: ContactSubmissionCreate):
+    """Send email notification for new contact form submission"""
+    try:
+        html_content = f"""
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #10b981;">New Contact Form Submission</h2>
+            <hr style="border: 1px solid #e5e7eb;">
+            <p><strong>Name:</strong> {submission.name}</p>
+            <p><strong>Email:</strong> {submission.email}</p>
+            <p><strong>Company:</strong> {submission.company or 'Not provided'}</p>
+            <p><strong>Phone:</strong> {submission.phone or 'Not provided'}</p>
+            <p><strong>Service Interest:</strong> {submission.service_interest or 'Not specified'}</p>
+            <hr style="border: 1px solid #e5e7eb;">
+            <h3 style="color: #374151;">Message:</h3>
+            <p style="background: #f3f4f6; padding: 15px; border-radius: 8px;">{submission.message}</p>
+            <hr style="border: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 12px;">This email was sent from the Motionfy website contact form.</p>
+        </div>
+        """
+        
+        params = {
+            "from": "Motionfy Contact <onboarding@resend.dev>",
+            "to": [NOTIFICATION_EMAIL],
+            "subject": f"New Inquiry from {submission.name}",
+            "html": html_content,
+            "reply_to": submission.email
+        }
+        
+        email = await asyncio.to_thread(resend.Emails.send, params)
+        logger.info(f"Email notification sent successfully: {email.get('id')}")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send email notification: {str(e)}")
+        return False
+
 @api_router.post("/contact")
 async def submit_contact(input: ContactSubmissionCreate):
     submission_obj = ContactSubmission(**input.model_dump())
     doc = submission_obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
     await db.contact_submissions.insert_one(doc)
+    
+    # Send email notification (non-blocking)
+    await send_notification_email(input)
+    
     return {"success": True, "message": "Thank you! We'll be in touch soon."}
 
 @api_router.post("/newsletter")
@@ -300,9 +348,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
