@@ -289,6 +289,55 @@ async def send_notification_email(submission: ContactSubmissionCreate):
         logger.error(f"Failed to send email notification: {str(e)}")
         return False
 
+async def send_confirmation_email(submission: ContactSubmissionCreate):
+    """Send confirmation email to user who submitted the form"""
+    try:
+        html_content = f"""
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; padding: 40px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: #10b981; margin: 0;">Motionfy</h1>
+                <p style="color: #6b7280; margin: 5px 0 0 0;">Life Sciences Marketing Agency</p>
+            </div>
+            
+            <h2 style="color: #111827; margin-bottom: 20px;">Thanks for reaching out, {submission.name.split()[0]}!</h2>
+            
+            <p style="color: #374151; line-height: 1.6;">
+                We've received your inquiry and our team is reviewing it. You can expect to hear back from us within <strong>24-48 hours</strong>.
+            </p>
+            
+            <div style="background: #f9fafb; border-radius: 12px; padding: 20px; margin: 25px 0;">
+                <h3 style="color: #374151; margin: 0 0 15px 0; font-size: 14px; text-transform: uppercase;">Your Message Summary:</h3>
+                <p style="color: #6b7280; margin: 5px 0;"><strong>Service Interest:</strong> {submission.service_interest or 'General Inquiry'}</p>
+                <p style="color: #6b7280; margin: 5px 0;"><strong>Message:</strong> {submission.message[:150]}{'...' if len(submission.message) > 150 else ''}</p>
+            </div>
+            
+            <p style="color: #374151; line-height: 1.6;">
+                In the meantime, feel free to explore our <a href="https://motionfy.com/case-studies" style="color: #10b981;">case studies</a> to see how we've helped other life sciences companies achieve their marketing goals.
+            </p>
+            
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+            
+            <p style="color: #9ca3af; font-size: 12px; text-align: center;">
+                Motionfy | 17595 Harvard Ave, Ste C-831, Irvine, CA 92614<br>
+                <a href="mailto:hello@motionfy.com" style="color: #10b981;">hello@motionfy.com</a>
+            </p>
+        </div>
+        """
+        
+        params = {
+            "from": "Motionfy <onboarding@resend.dev>",
+            "to": [submission.email],
+            "subject": "We've received your inquiry - Motionfy",
+            "html": html_content
+        }
+        
+        email = await asyncio.to_thread(resend.Emails.send, params)
+        logger.info(f"Confirmation email sent to {submission.email}: {email.get('id')}")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send confirmation email: {str(e)}")
+        return False
+
 @api_router.post("/contact")
 async def submit_contact(input: ContactSubmissionCreate):
     submission_obj = ContactSubmission(**input.model_dump())
@@ -296,8 +345,11 @@ async def submit_contact(input: ContactSubmissionCreate):
     doc['created_at'] = doc['created_at'].isoformat()
     await db.contact_submissions.insert_one(doc)
     
-    # Send email notification (non-blocking)
-    await send_notification_email(input)
+    # Send emails (non-blocking, run in parallel)
+    await asyncio.gather(
+        send_notification_email(input),  # Email to admin
+        send_confirmation_email(input)   # Confirmation to user
+    )
     
     return {"success": True, "message": "Thank you! We'll be in touch soon."}
 
