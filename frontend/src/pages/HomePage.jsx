@@ -182,8 +182,8 @@ export default function HomePage() {
                   <div className="flex items-center gap-3">
                     <Award className="w-8 h-8 text-primary" />
                     <div>
-                      <p className="text-sm font-semibold text-foreground">25 Awards</p>
-                      <p className="text-xs text-muted-foreground">Industry Recognition</p>
+                      <p className="text-sm font-semibold text-foreground">Excellence</p>
+                      <p className="text-xs text-muted-foreground">Proven Results</p>
                     </div>
                   </div>
                 </motion.div>

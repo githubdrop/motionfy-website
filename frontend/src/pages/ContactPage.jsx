@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Mail, Clock, Send, CheckCircle, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
+import { MapPin, Mail, Clock, Send, CheckCircle, ArrowUpRight } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
@@ -117,9 +117,7 @@ export default function ContactPage() {
                 <CardContent className="p-6">
                   <h3 className="font-heading font-semibold text-foreground mb-4">Connect With Us</h3>
                   <div className="flex gap-3">
-                    {[{ icon: Linkedin, href: "https://linkedin.com" }, { icon: Twitter, href: "https://twitter.com" }, { icon: Mail, href: "mailto:hello@motionfy.com" }].map((s, i) => (
-                      <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all" data-testid={`contact-social-${i}`}><s.icon className="w-4 h-4" /></a>
-                    ))}
+                    <a href="mailto:hello@motionfy.com" className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all" data-testid="contact-email-btn"><Mail className="w-4 h-4" /></a>
                   </div>
                 </CardContent>
               </Card>

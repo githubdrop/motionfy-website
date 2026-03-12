@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Twitter, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 // Sleek Biotech M - Modern minimal with subtle science touch
 const MotionfyLogo = () => (
@@ -55,22 +55,13 @@ export default function Footer() {
               We transform breakthrough science into market leadership. Strategic marketing for life sciences companies.
             </p>
             <div className="flex gap-3">
-              {[
-                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-                { icon: Mail, href: "mailto:hello@motionfy.com", label: "Email" },
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
-                  data-testid={`footer-${social.label.toLowerCase()}`}
-                >
-                  <social.icon className="w-4 h-4" />
-                </a>
-              ))}
+              <a
+                href="mailto:hello@motionfy.com"
+                className="w-10 h-10 rounded-xl bg-secondary/50 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all group"
+                data-testid="footer-email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -104,10 +95,6 @@ export default function Footer() {
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Motionfy. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link to="/privacy" className="text-muted-foreground text-sm hover:text-foreground transition-colors">Privacy</Link>
-            <Link to="/terms" className="text-muted-foreground text-sm hover:text-foreground transition-colors">Terms</Link>
-          </div>
         </div>
       </div>
     </footer>

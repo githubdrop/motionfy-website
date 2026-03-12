@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Target, Lightbulb, Heart, Shield, ArrowRight, Linkedin, Award, Users, Calendar } from "lucide-react";
+import { Target, Lightbulb, Heart, Shield, ArrowRight, Award, Users, Calendar } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import axios from "axios";
@@ -149,11 +149,6 @@ export default function AboutPage() {
                     <div className="relative h-72 overflow-hidden">
                       <img src={member.image_url} alt={member.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {member.linkedin && (
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 w-10 h-10 rounded-xl bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" data-testid={`team-linkedin-${member.id}`}>
-                          <Linkedin className="w-5 h-5 text-primary-foreground" />
-                        </a>
-                      )}
                     </div>
                     <CardContent className="p-6">
                       <h3 className="font-heading font-bold text-lg text-foreground">{member.name}</h3>
