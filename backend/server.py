@@ -212,7 +212,7 @@ TEAM_MEMBERS = [
         "name": "Matt",
         "role": "Account Manager",
         "bio": "Dedicated client partner ensuring seamless communication and project delivery. Brings strategic insight and a client-first approach to every engagement.",
-        "image_url": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80",
+        "image_url": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80",
         "linkedin": "https://linkedin.com"
     },
     {
