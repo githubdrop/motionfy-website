@@ -20,19 +20,16 @@ const footerLinks = {
   company: [
     { name: "About", path: "/about" },
     { name: "Team", path: "/about#team" },
-    { name: "Careers", path: "/contact" },
     { name: "Contact", path: "/contact" },
   ],
   services: [
     { name: "Brand Strategy", path: "/services" },
     { name: "Digital Marketing", path: "/services" },
     { name: "Scientific Comms", path: "/services" },
-    { name: "Regulatory", path: "/services" },
   ],
   resources: [
     { name: "Case Studies", path: "/case-studies" },
     { name: "Blog", path: "/blog" },
-    { name: "Insights", path: "/blog" },
   ],
 };
 
