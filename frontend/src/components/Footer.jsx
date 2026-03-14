@@ -1,19 +1,13 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 
-// Sleek Biotech M - Modern minimal with subtle science touch
+// Motionfy Logo - Using provided image
 const MotionfyLogo = () => (
-  <svg width="36" height="32" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 28V4L18 18L33 4V28" stroke="url(#footerSleekGrad)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M14 14L18 11L22 14L22 19L18 22L14 19Z" stroke="hsl(174, 100%, 50%)" strokeWidth="1.5" fill="none" opacity="0.6"/>
-    <circle cx="18" cy="16.5" r="2" fill="hsl(174, 100%, 50%)"/>
-    <defs>
-      <linearGradient id="footerSleekGrad" x1="3" y1="4" x2="33" y2="28">
-        <stop stopColor="hsl(172, 66%, 55%)" />
-        <stop offset="1" stopColor="hsl(174, 100%, 50%)" />
-      </linearGradient>
-    </defs>
-  </svg>
+  <img 
+    src="https://customer-assets.emergentagent.com/job_de6752b7-913f-48de-b067-0ab658914343/artifacts/wxq2d61w_ChatGPT%20Image%20Mar%2012%2C%202026%2C%2010_49_57%20PM.png" 
+    alt="Motionfy Logo" 
+    className="h-10 w-auto"
+  />
 );
 
 const footerLinks = {
@@ -41,12 +35,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6" data-testid="footer-logo">
+            <Link to="/" className="flex items-center mb-6" data-testid="footer-logo">
               <MotionfyLogo />
-              <span className="font-heading font-semibold text-xl">
-                <span className="text-foreground">Motion</span>
-                <span className="text-primary">fy</span>
-              </span>
             </Link>
             <p className="text-muted-foreground mb-8 max-w-sm leading-relaxed">
               We transform breakthrough science into market leadership. Strategic marketing for life sciences companies.
