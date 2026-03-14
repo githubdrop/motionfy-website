@@ -6,7 +6,7 @@ const MotionfyLogo = () => (
   <img 
     src="https://customer-assets.emergentagent.com/job_de6752b7-913f-48de-b067-0ab658914343/artifacts/wxq2d61w_ChatGPT%20Image%20Mar%2012%2C%202026%2C%2010_49_57%20PM.png" 
     alt="Motionfy Logo" 
-    className="h-10 w-auto"
+    className="h-14 w-auto object-contain"
   />
 );
 
