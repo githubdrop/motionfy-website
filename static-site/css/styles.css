@@ -98,6 +98,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-logo img {
   height: 100px;
   width: auto;
+  mix-blend-mode: lighten;
 }
 
 .navbar-links {
@@ -710,6 +711,7 @@ section {
 .footer-brand img {
   height: 100px;
   margin-bottom: 24px;
+  mix-blend-mode: lighten;
 }
 
 .footer-brand p {
